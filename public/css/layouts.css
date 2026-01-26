@@ -1,0 +1,98 @@
+  body {
+ padding-top: 0 !important;
+font-family: "Tajawal", sans-serif;
+background: #eef3f8;
+margin: 0;
+padding: 0;
+}
+
+
+/* ================= NAV ================= */
+.navbar-custom {
+background: #ffffffd9;
+backdrop-filter: blur(12px);
+box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+padding: 12px 0;
+transition: .3s ease;
+}
+.navbar-custom.sticky {
+/* position: sticky; */
+top: 0;
+z-index: 999;
+background: #ffffffee!important;
+box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+.navbar-nav .nav-link {
+font-weight: 600;
+color: #0d1b2a;
+padding: 10px 18px !important;
+transition: .25s;
+}
+.navbar-nav .nav-link:hover {
+color: #0d6efd;
+}
+.btn-schedule {
+background: #0d6efd;
+color: #fff !important;
+padding: 8px 20px;
+border-radius: 12px;
+font-weight: 700;
+transition: .25s;
+}
+.btn-schedule:hover {
+background: #0953a5;
+}
+
+
+/* ================= HERO ================= */
+.hero {
+padding: 90px 0;
+/* background: linear-gradient(135deg, #0d6efd 0%, #1b3358 100%); */
+color:#0953a5;
+text-align: center;
+border-bottom-left-radius: 80px;
+border-bottom-right-radius: 80px;
+box-shadow: 0 8px 25px rgba(0,0,0,0.18);
+}
+.hero h1 {
+font-size: 45px;
+font-weight: 800;
+margin-bottom: 20px;
+}
+.hero p {
+font-size: 20px;
+opacity: .9;
+}
+.notification-badge {
+    position: absolute;
+    top: -6px;
+    right: -8px;
+    width: 20px;
+    height: 20px;
+    /* background: radial-gradient(circle at 30% 30%, #ff7676, #d10000); */
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* box-shadow: 0 0 6px rgba(255, 0, 0, 0.7); */
+    animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+.notification-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: red;
+    color: #fff;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+    font-weight: bold;
+}

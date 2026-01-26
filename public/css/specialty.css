@@ -1,0 +1,34 @@
+    .section-title {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 18px;
+        border-right: 4px solid #0d6efd;
+        padding-right: 10px;
+    }
+    .hero {
+        background-size: cover;
+        background-position: center;
+        color: #fff;
+        padding: 60px 0;
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+      .hero h1 {
+    font-size: 42px;
+    font-weight: 800;
+      }
+      .hero p {
+    font-size: 18px;
+    opacity: .95;
+    }
+    /* .hero::after{
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: rgba(0,0,0,0.45);
+    } */
+    .hero .container{position:relative;z-index:2}
+    .doctor-card img{border-radius:12px;height:220px;object-fit:cover}
+    .stat-box{border-radius:12px;padding:18px}
+    .faq-card {cursor: pointer}
