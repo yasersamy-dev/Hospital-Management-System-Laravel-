@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Doctor;
 use App\Models\Specialty;
+use App\Http\Requests\Admin\createDoctorRequest;
+use App\Http\Requests\Admin\UpdateDoctorRequest;
 
 class DoctorsController extends Controller
 {
@@ -19,21 +21,12 @@ class DoctorsController extends Controller
         $specialties = Specialty::all();
         return view('admin.create.createdoctor',compact('specialties'));
     }
-    public function store(Request $request){
-        $request->validate([
-            'name'=>'required|string|max:255',
-            'phone'=>'required|string|max:20',
-            'specialty_id'=>'required|exists:specialties,id',
-        ]);
-       
+    public function store(CreateDoctorRequest $request){
         Doctor::create([
            'name' => $request->name,
            'phone' => $request->phone,
            'specialty_id' => $request->specialty_id,
           ]);
-          
-
-
         return redirect()->route('doctors.index')->with('success','تم اضافة الدكتور بنجاح');
     }
 
@@ -42,13 +35,7 @@ class DoctorsController extends Controller
         $specialties = Specialty::all();
         return view('admin.update.editdoctor', compact('doctor','specialties'));
     }
-    public function update(Request $request, $id){
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'phone' => 'required|string|max:20',
-             'specialty_id'=>'required|exists:specialties,id',
-            'image'=>'nullable|image|max:2048',
-        ]);
+    public function update(UpdateDoctorRequest $request, $id){
         $doctor = Doctor::findOrFail($id);
         $doctor->update([
             'name' => $request->name,

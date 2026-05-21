@@ -1,22 +1,90 @@
-@extends('layouts.app')
+@extends('layouts.auth')
+
+@section('title', 'نسيت كلمة السر')
 
 @section('content')
-<div class="container mt-5 mb-5" style="max-width: 400px">
-    <h4 class="mb-3">نسيت كلمة السر</h4>
 
-    @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
+<section class="d-flex justify-content-center align-items-center">
 
-    <form method="POST" action="{{ route('password.email') }}">
-        @csrf
+    <div class="card auth-card p-4" style="width:100%; max-width:430px;">
 
-        <div class="mb-3">
-            <label>البريد الإلكتروني</label>
-            <input type="email" name="email" class="form-control" required>
+        <div class="text-center mb-4">
+
+            <div class="mb-3">
+                <i class="fa-solid fa-key text-primary fs-1"></i>
+            </div>
+
+            <h3 class="auth-title">
+                نسيت كلمة السر؟
+            </h3>
+
+            <p class="text-muted small">
+                أدخل بريدك الإلكتروني وسنرسل لك رابط إعادة التعيين
+            </p>
+
         </div>
 
-        <button class="btn btn-primary w-100">إرسال رابط التعيين</button>
-    </form>
-</div>
+        {{-- Success Message --}}
+        @if(session('success'))
+            <div class="alert alert-success rounded-3">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        {{-- Errors --}}
+        @if ($errors->any())
+            <div class="alert alert-danger rounded-3">
+                <ul class="mb-0 small">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <form method="POST" action="{{ route('password.email') }}">
+            @csrf
+
+            <div class="mb-4">
+
+                <label class="form-label">
+                    البريد الإلكتروني
+                </label>
+
+                <div class="input-group">
+
+                    <span class="input-group-text">
+                        <i class="fa-solid fa-envelope"></i>
+                    </span>
+
+                    <input
+                        type="email"
+                        name="email"
+                        class="form-control"
+                        placeholder="example@gmail.com"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+            <button class="btn btn-primary btn-custom w-100">
+                <i class="fa-solid fa-paper-plane me-2"></i>
+                إرسال رابط التعيين
+            </button>
+
+        </form>
+
+        <div class="text-center mt-4">
+            <a href="{{ route('login') }}"
+               class="text-decoration-none fw-semibold">
+                العودة لتسجيل الدخول
+            </a>
+        </div>
+
+    </div>
+
+</section>
+
 @endsection

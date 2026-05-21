@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Appointment extends Model
 {
-      use HasFactory;
+    use HasFactory;
     const PENDING   = 'pending';
     const CONFIRMED = 'confirmed';
     const CANCELLED = 'cancelled';

@@ -62,20 +62,7 @@
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
-
-                    {{-- صورة الدكتور --}}
-                    {{-- <div class="form-group">
-                        <label>صورة الدكتور</label>
-                        <input type="file"
-                               name="image"
-                               class="form-control-file @error('image') is-invalid @enderror">
-                        @error('image')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div> --}}
-
-
-                <div class="card-footer">
+                   <div class="card-footer">
                     <button type="submit" class="btn btn-success">
                         <i class="fas fa-save"></i> حفظ
                     </button>

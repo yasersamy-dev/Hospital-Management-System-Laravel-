@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\Admin\CreateUserRequest;
+use App\Http\Requests\Admin\UpdateUserRequest;
 
 class UsersController extends Controller
 {
@@ -13,17 +15,13 @@ class UsersController extends Controller
     $users= User::latest()->get();
     return view('admin.view.users' , compact('users'));
    } 
+   
       public function create(){
 
         return view('admin.create.createuser');
     }
 
-    public function store(Request $request){
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
+    public function store(CreateUserRequest $request){
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -33,26 +31,18 @@ class UsersController extends Controller
         return  redirect()->route('users.index')->with('success','تم انشاء المستخدم بنجاح');
     }
 
-    public function edit($id){
-        $user = User::findOrFail($id);
+    public function edit(User $user){
         return view('admin.update.edituser', compact('user'));
     }
 
-    public function update(Request $request, $id){
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:225|unique:users,email,' . $id,
-        ]);
-
-        $user = User::findOrFail($id);
+    public function update(UpdateUserRequest $request, User $user){
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
         ]);
         return redirect()->route('users.index')->with('success', 'تم تحديث المستخدم بنجاح');
     }
-    public function destroy($id){
-        $user = User::findOrFail($id);
+    public function destroy(User $user){
         $user->delete();
         return redirect()->route('users.index')->with('success', 'تم حذف المستخدم بنجاح');
     }

@@ -5,11 +5,13 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactController ;
 use App\Http\Controllers\SpecialtyController;
 use App\Http\Controllers\DoctorController;
-use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\Appointment\AppointmentController;
+use App\Http\Controllers\Appointment\UserAppointmentController;
 use App\Http\Controllers\ProfileController;
 
 // Auth controllers
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\SocialController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 // Admin controllers
@@ -22,7 +24,7 @@ use App\Http\Controllers\Admin\ProfilesController;
 // Doctor controllers
 use App\Http\Controllers\Doctor\DoctorDashboardController;
 
-// public routes home page and specialties and doctors pages and appointment creation pages.
+
 Route::get('/',[HomeController::class,'index'])->name('home.index');
 Route::get('/contact',[ContactController::class,'Showcontact'])->name('contact.show');
 Route::get('/specialties/{id}', [SpecialtyController::class, 'show'])->name('specialties.show');
@@ -31,16 +33,16 @@ Route::get('/specialties/{id}/doctors',[DoctorController::class,'showdoctors'])-
 // Admin routes
 Route::middleware(['auth','admin'])->group(function(){
 Route::get('/admin/dashboard',[DashboardController::class,'index'])->name('admin.dashboard');
-// profile
+
 Route::get('/admin/profile',[ProfilesController::class,'show'])->name('admin.profile');
 Route::put('/admin/profile',[ProfilesController::class,'update'])->name('admin.profile.update');
-// view users and create user
+
 Route::resource('admin/users', UsersController::class);
-// view doctors and created 
+
 Route::resource('admin/doctors', DoctorsController::class);
-// view patients
+
 Route::get('admin/patients',[PatientsController::class,'index'])->name('patients.index');
-// view specialties created edit delete
+
 Route::resource('admin/specialties', SpecialtiesController::class);
 });
 
@@ -53,39 +55,37 @@ Route::middleware(['auth', 'doctor'])->prefix('doctor')->group(function () {
 
 // profile routes
 Route::middleware('auth')->group(function () {
-    // profile routes
 Route::get('/profile/show',[ProfileController::class,'show'])->name('profile.show');
 Route::get('/profile/edit',[ProfileController::class,'edit'])->name('profile.edit');
 Route::put('/profile/update',[ProfileController::class,'update'])->name('profile.update');
 // appointment routes
 Route::get('/doctors/{doctor}/appointments/create',[AppointmentController::class,'create'])->name('appointments.create');
 Route::post('/appointments',[AppointmentController::class, 'store'])->name('appointments.store');
-Route::get('/appointments/{id}/edit',[AppointmentController::class,'edit'])->name('appointments.edit');
-Route::put('/appointments/{id}/update',[AppointmentController::class,'update'])->name('appointments.update');
-Route::delete('/appointments/{appointment}',[AppointmentController::class, 'destroy'])->name('appointments.destroy');
+Route::get('/appointments',[UserAppointmentController::class, 'show'])->name('appointments.show');
+Route::get('/appointments/{id}/edit',[UserAppointmentController::class,'edit'])->name('appointments.edit');
+Route::put('/appointments/{id}/update',[UserAppointmentController::class,'update'])->name('appointments.update');
+Route::delete('/appointments/{appointment}',[UserAppointmentController::class, 'destroy'])->name('appointments.destroy');
 });
 
 
 // Auth routes
-Route::middleware('guest')->group(function () {
+
 Route::get('/login',[AuthController::class,'showloginform'])->name('auth.showloginform');
 Route::post('/login',[AuthController::class,'login'])->name('login');
-
 Route::get('/register',[AuthController::class,'showregisterform'])->name('auth.showregisterform');
 Route::post('/register',[AuthController::class,'register'])->name('register');
-});
 
 Route::post('/logout',[AuthController::class,'logout'])->name('logout')->middleware('auth');
 
 
-// password reset routes
-//forgot password
-Route::middleware('guest')->group(function () {
 Route::get('forgot-password', [ForgotPasswordController::class,'showforgotform'])->name('password.forgot');
 Route::post('forgot-password',[ForgotPasswordController::class,'sendresetlink'])->name('password.email');
-//reset password
+
 Route::get('reset-password/{token}', [ResetPasswordController::class,'showresetform'])->name('password.reset');
 Route::post('reset-password', [ResetPasswordController::class,'resetpassword'])->name('password.update');
-});
+
+Route::get('/auth/redirect/{provider}', [SocialController::class,'redirect'])->name('social.redirect');
+Route::get('/auth/callback/{provider}', [SocialController::class,'callback'])->name('social.callback');
+
 
 

@@ -1,75 +1,228 @@
-  body {
- padding-top: 0 !important;
-font-family: "Tajawal", sans-serif;
-background: #eef3f8;
-margin: 0;
-padding: 0;
+body{
+    padding-top: 0 !important;
+    font-family: "Tajawal", sans-serif;
+    background: #eef3f8;
+    margin: 0;
+    padding: 0;
+    color: #1e293b;
 }
 
+/* ================= GLOBAL ================= */
 
-/* ================= NAV ================= */
-.navbar-custom {
-background: #ffffffd9;
-backdrop-filter: blur(12px);
-box-shadow: 0 4px 18px rgba(0,0,0,0.08);
-padding: 12px 0;
-transition: .3s ease;
-}
-.navbar-custom.sticky {
-/* position: sticky; */
-top: 0;
-z-index: 999;
-background: #ffffffee!important;
-box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-}
-.navbar-nav .nav-link {
-font-weight: 600;
-color: #0d1b2a;
-padding: 10px 18px !important;
-transition: .25s;
-}
-.navbar-nav .nav-link:hover {
-color: #0d6efd;
-}
-.btn-schedule {
-background: #0d6efd;
-color: #fff !important;
-padding: 8px 20px;
-border-radius: 12px;
-font-weight: 700;
-transition: .25s;
-}
-.btn-schedule:hover {
-background: #0953a5;
+a{
+    text-decoration: none;
 }
 
+main{
+    min-height: 80vh;
+}
+
+.card{
+    border: none;
+    border-radius: 24px;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar-custom{
+    background: rgba(255,255,255,.92);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+    padding: 14px 0;
+    transition: .3s ease;
+    border-bottom: 1px solid #e9eef5;
+}
+
+.navbar-custom.sticky{
+    top: 0;
+    z-index: 999;
+    background: rgba(255,255,255,.98)!important;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+}
+
+.navbar-brand{
+    font-size: 1.7rem;
+    font-weight: 800;
+    color: #0d6efd !important;
+    transition: .3s;
+}
+
+.navbar-brand:hover{
+    transform: scale(1.03);
+}
+
+.navbar-nav .nav-link{
+    font-weight: 700;
+    color: #0f172a !important;
+    padding: 10px 18px !important;
+    transition: .25s;
+    position: relative;
+}
+
+.navbar-nav .nav-link:hover{
+    color: #0d6efd !important;
+}
+
+.navbar-nav .nav-link::after{
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    right: 18px;
+    width: 0%;
+    height: 2px;
+    background: #0d6efd;
+    transition: .3s;
+}
+
+.navbar-nav .nav-link:hover::after{
+    width: 50%;
+}
+
+.navbar-toggler{
+    border: none;
+    box-shadow: none !important;
+}
+
+.dropdown-menu{
+    border: none;
+    border-radius: 18px;
+    padding: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.08);
+}
+
+.dropdown-item{
+    border-radius: 12px;
+    padding: 10px 14px;
+    transition: .2s;
+    font-weight: 600;
+}
+
+.dropdown-item:hover{
+    background: #f1f5f9;
+    color: #0d6efd;
+}
+
+/* ================= BUTTONS ================= */
+
+.btn{
+    border-radius: 14px;
+    font-weight: 700;
+    transition: .3s;
+}
+
+.btn:hover{
+    transform: translateY(-2px);
+}
+
+.btn-schedule{
+    background: #0d6efd;
+    color: #fff !important;
+    padding: 10px 22px;
+    border-radius: 14px;
+    font-weight: 700;
+    transition: .25s;
+}
+
+.btn-schedule:hover{
+    background: #0953a5;
+}
 
 /* ================= HERO ================= */
-.hero {
-padding: 90px 0;
-/* background: linear-gradient(135deg, #0d6efd 0%, #1b3358 100%); */
-color:#0953a5;
-text-align: center;
-border-bottom-left-radius: 80px;
-border-bottom-right-radius: 80px;
-box-shadow: 0 8px 25px rgba(0,0,0,0.18);
+
+.hero{
+    padding: 100px 0;
+    color: #0953a5;
+    text-align: center;
+    border-bottom-left-radius: 80px;
+    border-bottom-right-radius: 80px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    background:
+        linear-gradient(rgba(255,255,255,.92), rgba(255,255,255,.92)),
+        url('/images/medical-bg.jpg');
+    background-size: cover;
+    background-position: center;
 }
-.hero h1 {
-font-size: 45px;
-font-weight: 800;
-margin-bottom: 20px;
+
+.hero h1{
+    font-size: 48px;
+    font-weight: 900;
+    margin-bottom: 18px;
 }
-.hero p {
-font-size: 20px;
-opacity: .9;
+
+.hero p{
+    font-size: 20px;
+    opacity: .9;
 }
-.notification-badge {
+
+/* ================= PROFILE ================= */
+
+.profile-card{
+    overflow: hidden;
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.06);
+    background: white;
+}
+
+.profile-cover{
+    height: 180px;
+    background: linear-gradient(135deg,#0d6efd,#2563eb);
+}
+
+.profile-avatar{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 6px solid white;
+    margin-top: -75px;
+    background: white;
+}
+
+.info-card{
+    border-radius: 24px;
+    box-shadow: 0 6px 20px rgba(0,0,0,.05);
+}
+
+/* ================= APPOINTMENTS ================= */
+
+.appointment-card{
+    border-radius: 24px;
+    transition: .3s;
+    background: white;
+    box-shadow: 0 6px 20px rgba(0,0,0,.05);
+}
+
+.appointment-card:hover{
+    transform: translateY(-4px);
+}
+
+.status-badge{
+    border-radius: 50px;
+    padding: 8px 16px;
+    font-size: .85rem;
+    font-weight: 700;
+}
+
+/* ================= NOTIFICATIONS ================= */
+
+.notification-btn{
+    position: relative;
+    border: none;
+    background: transparent;
+}
+
+.notification-btn i{
+    font-size: 24px;
+    color: #0f172a;
+}
+
+.notification-badge{
     position: absolute;
     top: -6px;
     right: -8px;
-    width: 20px;
+    min-width: 20px;
     height: 20px;
-    /* background: radial-gradient(circle at 30% 30%, #ff7676, #d10000); */
+    background: #ef4444;
     color: white;
     font-size: 11px;
     font-weight: bold;
@@ -77,22 +230,59 @@ opacity: .9;
     display: flex;
     align-items: center;
     justify-content: center;
-    /* box-shadow: 0 0 6px rgba(255, 0, 0, 0.7); */
     animation: pulse 1.5s infinite;
 }
-@keyframes pulse {
-    0%   { transform: scale(1); }
-    50%  { transform: scale(1.15); }
-    100% { transform: scale(1); }
+
+@keyframes pulse{
+    0%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.12);
+    }
+    100%{
+        transform: scale(1);
+    }
 }
-.notification-badge {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background: red;
-    color: #fff;
-    border-radius: 50%;
-    padding: 2px 6px;
-    font-size: 12px;
-    font-weight: bold;
+
+/* ================= FOOTER ================= */
+
+footer{
+    background: #0d6efd;
+    padding: 20px 0;
+    margin-top: 50px;
+    box-shadow: 0 -3px 15px rgba(0,0,0,.05);
+}
+
+footer p{
+    margin: 0;
+    color: white;
+    font-weight: 500;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:768px){
+
+    .hero{
+        padding: 70px 20px;
+    }
+
+    .hero h1{
+        font-size: 34px;
+    }
+
+    .hero p{
+        font-size: 17px;
+    }
+
+    .navbar-nav{
+        margin-top: 15px;
+    }
+
+    .profile-avatar{
+        width: 120px;
+        height: 120px;
+    }
+
 }

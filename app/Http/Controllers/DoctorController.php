@@ -12,6 +12,7 @@ class DoctorController extends Controller
 {
     public function showdoctors($id)
    {
+    
    $doctor = Doctor::with('specialty')->findOrFail($id);
 
     return view('doctors.doctor', compact('doctor'));

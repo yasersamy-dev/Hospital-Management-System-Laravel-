@@ -1,41 +1,184 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 
 @section('title', 'إنشاء حساب')
 
 @section('content')
-<section class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
-  <div class="card shadow-lg p-4 rounded-4" style="width: 100%; max-width: 450px;">
-    <h3 class="text-center mb-4 fw-bold">إنشاء حساب جديد</h3>
 
-    <form action="{{ route('register') }}" method="POST">
-      @csrf
-      <div class="mb-3">
-        <label for="name" class="form-label">الاسم الكامل</label>
-        <input type="text" name="name" id="name" class="form-control" required>
-      </div>
+<section class="auth-section d-flex justify-content-center align-items-center">
 
-      <div class="mb-3">
-        <label for="email" class="form-label">البريد الإلكتروني</label>
-        <input type="email" name="email" id="email" class="form-control" required>
-      </div>
+    <div class="card auth-card p-4 p-lg-5">
 
-      <div class="mb-3">
-        <label for="password" class="form-label">كلمة المرور</label>
-        <input type="password" name="password" id="password" class="form-control" required>
-      </div>
+        <div class="text-center mb-4">
 
-      <div class="mb-3">
-        <label for="password_confirmation" class="form-label">تأكيد كلمة المرور</label>
-        <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" required>
-      </div>
+            <div class="logo-circle register-circle mx-auto mb-3">
+                <i class="fa-solid fa-user-plus"></i>
+            </div>
 
-      <button type="submit" class="btn btn-success w-100">إنشاء الحساب</button>
-    </form>
+            <h2 class="auth-title register-title">
+                إنشاء حساب جديد
+            </h2>
 
-    <p class="text-center mt-3">
-      لديك حساب بالفعل؟
-      <a href="{{ route('login') }}" class="text-decoration-none">سجّل الدخول الآن</a>
-    </p>
-  </div>
+            <p class="auth-subtitle">
+                قم بإنشاء حساب للبدء في استخدام النظام
+            </p>
+
+        </div>
+
+        <form action="{{ route('register') }}" method="POST">
+            @csrf
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    الاسم الكامل
+                </label>
+
+                <div class="input-group custom-input">
+
+                    <span class="input-group-text">
+                        <i class="fa-solid fa-user"></i>
+                    </span>
+
+                    <input
+                        type="text"
+                        name="name"
+                        class="form-control"
+                        placeholder="أدخل اسمك الكامل"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    البريد الإلكتروني
+                </label>
+
+                <div class="input-group custom-input">
+
+                    <span class="input-group-text">
+                        <i class="fa-solid fa-envelope"></i>
+                    </span>
+
+                    <input
+                        type="email"
+                        name="email"
+                        class="form-control"
+                        placeholder="example@gmail.com"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    كلمة المرور
+                </label>
+
+                <div class="input-group custom-input">
+
+                    <span class="input-group-text">
+                        <i class="fa-solid fa-lock"></i>
+                    </span>
+
+                    <input
+                        type="password"
+                        name="password"
+                        class="form-control"
+                        placeholder="********"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+            <div class="mb-4">
+
+                <label class="form-label">
+                    تأكيد كلمة المرور
+                </label>
+
+                <div class="input-group custom-input">
+
+                    <span class="input-group-text">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </span>
+
+                    <input
+                        type="password"
+                        name="password_confirmation"
+                        class="form-control"
+                        placeholder="********"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+            <button type="submit"
+                    class="btn btn-success btn-auth register-btn w-100">
+
+                <i class="fa-solid fa-user-check me-2"></i>
+
+                إنشاء الحساب
+
+            </button>
+
+        </form>
+
+        <div class="divider my-4">
+            <span>أو</span>
+        </div>
+
+        <div class="social-login">
+
+            <a href="{{ route('social.redirect', ['provider' => 'google']) }}"
+               class="btn social-btn google-btn w-100 mb-3">
+
+                <i class="fab fa-google"></i>
+
+                <span>
+                    التسجيل باستخدام Google
+                </span>
+
+            </a>
+
+            <a href="{{ route('social.redirect', ['provider' => 'facebook']) }}"
+               class="btn social-btn facebook-btn w-100">
+
+                <i class="fab fa-facebook-f"></i>
+
+                <span>
+                    التسجيل باستخدام Facebook
+                </span>
+
+            </a>
+
+        </div>
+
+        <div class="text-center mt-4">
+
+            <span class="text-muted">
+                لديك حساب بالفعل؟
+            </span>
+
+            <a href="{{ route('login') }}"
+               class="register-link">
+                تسجيل الدخول
+            </a>
+
+        </div>
+
+    </div>
+
 </section>
+
 @endsection

@@ -1,0 +1,314 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    min-height: 100vh;
+    background:
+        linear-gradient(135deg,#eef4ff 0%,#f8fbff 50%,#ffffff 100%);
+    font-family: "Cairo", sans-serif;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Background */
+
+.background-shapes{
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.shape{
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+}
+
+.shape1{
+    width: 300px;
+    height: 300px;
+    background: rgba(13,110,253,.15);
+    top: -80px;
+    right: -80px;
+}
+
+.shape2{
+    width: 250px;
+    height: 250px;
+    background: rgba(25,135,84,.12);
+    bottom: -70px;
+    left: -70px;
+}
+
+.shape3{
+    width: 180px;
+    height: 180px;
+    background: rgba(111,66,193,.12);
+    top: 50%;
+    left: 10%;
+}
+
+/* Navbar */
+
+.navbar-custom{
+    background: rgba(255,255,255,.75);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255,255,255,.4);
+    padding: 18px 0;
+}
+
+.navbar-brand{
+    color: #0d6efd !important;
+    font-size: 1.7rem;
+    transition: .3s;
+}
+
+.navbar-brand:hover{
+    transform: scale(1.04);
+}
+
+/* Section */
+
+.auth-section{
+    min-height: calc(100vh - 170px);
+}
+
+/* Card */
+
+.auth-card{
+    width: 100%;
+    max-width: 470px;
+    border: none;
+    border-radius: 30px;
+    background: rgba(255,255,255,.75);
+    backdrop-filter: blur(18px);
+    box-shadow:
+        0 10px 40px rgba(0,0,0,.08),
+        0 2px 10px rgba(0,0,0,.03);
+    transition: .4s;
+}
+
+.auth-card:hover{
+    transform: translateY(-4px);
+}
+
+/* Logo */
+
+.logo-circle{
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    background: linear-gradient(135deg,#0d6efd,#4f8cff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2rem;
+    box-shadow: 0 8px 25px rgba(13,110,253,.35);
+}
+
+/* Text */
+
+.auth-title{
+    font-size: 2rem;
+    font-weight: 800;
+    color: #0d6efd;
+    margin-bottom: 10px;
+}
+
+.auth-subtitle{
+    color: #6c757d;
+    font-size: .95rem;
+}
+
+/* Inputs */
+
+.form-label{
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 10px;
+}
+
+.custom-input{
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #dee2e6;
+    transition: .3s;
+    background: white;
+}
+
+.custom-input:focus-within{
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 4px rgba(13,110,253,.12);
+}
+
+.input-group-text{
+    border: none;
+    background: white;
+    color: #6c757d;
+    padding-inline: 18px;
+}
+
+.form-control{
+    border: none;
+    padding: 15px;
+    font-size: .95rem;
+}
+
+.form-control:focus{
+    box-shadow: none;
+}
+
+/* Forgot */
+
+.forgot-link{
+    color: #0d6efd;
+    text-decoration: none;
+    font-size: .9rem;
+    transition: .3s;
+}
+
+.forgot-link:hover{
+    color: #084298;
+}
+
+/* Login Button */
+
+.btn-auth{
+    border-radius: 16px;
+    padding: 14px;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: .3s;
+    box-shadow: 0 8px 20px rgba(13,110,253,.25);
+}
+
+.btn-auth:hover{
+    transform: translateY(-2px);
+}
+
+/* Divider */
+
+.divider{
+    position: relative;
+    text-align: center;
+}
+
+.divider::before{
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 100%;
+    height: 1px;
+    background: #dee2e6;
+}
+
+.divider span{
+    position: relative;
+    background: white;
+    padding-inline: 18px;
+    color: #6c757d;
+    font-size: .9rem;
+}
+
+/* Social Buttons */
+
+.social-btn{
+    border-radius: 16px;
+    padding: 14px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    transition: .3s;
+    border: none;
+}
+
+.social-btn i{
+    font-size: 1.1rem;
+}
+
+.google-btn{
+    background: white;
+    color: #212529;
+    border: 1px solid #dee2e6;
+}
+
+.google-btn:hover{
+    background: #f8f9fa;
+    transform: translateY(-2px);
+}
+
+.facebook-btn{
+    background: #1877f2;
+    color: white;
+}
+
+.facebook-btn:hover{
+    background: #1668d3;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Register */
+
+.register-link{
+    color: #0d6efd;
+    font-weight: 700;
+    text-decoration: none;
+    margin-right: 5px;
+}
+
+.register-link:hover{
+    color: #084298;
+}
+
+/* Footer */
+
+footer{
+    padding: 20px 0;
+    margin-top: 30px;
+}
+
+footer p{
+    color: #6c757d;
+    font-size: .92rem;
+}
+
+@media(max-width:576px){
+
+    .auth-card{
+        border-radius: 24px;
+    }
+
+    .auth-title{
+        font-size: 1.6rem;
+    }
+
+}
+/* Register */
+
+.register-circle{
+    background: linear-gradient(135deg,#198754,#43c174);
+    box-shadow: 0 8px 25px rgba(25,135,84,.35);
+}
+
+.register-title{
+    color: #198754;
+}
+
+.register-btn{
+    background: linear-gradient(135deg,#198754,#28a745);
+    border: none;
+    box-shadow: 0 8px 20px rgba(25,135,84,.25);
+}
+
+.register-btn:hover{
+    background: linear-gradient(135deg,#157347,#23923d);
+}

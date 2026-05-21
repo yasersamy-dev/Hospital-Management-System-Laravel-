@@ -148,7 +148,7 @@
         <h4 class="mb-2">هل ترغب في حجز موعد بقسم {{ $specialty->name }}؟</h4>
         <p class="text-muted mb-3">اختر الطبيب الأنسب لك أو اتصل بنا للحصول على مساعدة فورية.</p>
         <a href="#doctors" class="btn btn-primary btn-lg me-2">عرض الأطباء</a>
-        {{-- <a href="{{ route('contact') }}" class="btn btn-outline-primary btn-lg">تواصل معنا</a> --}}
+        <a href="{{ route('contact.show') }}" class="btn btn-outline-primary btn-lg">تواصل معنا</a>
     </div>
 </div>
 

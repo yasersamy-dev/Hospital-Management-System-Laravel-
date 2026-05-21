@@ -11,8 +11,9 @@ use App\Models\Doctor;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
+   
     use HasFactory, Notifiable;
+    
 
     /**
      * The attributes that are mass assignable.
@@ -26,6 +27,7 @@ class User extends Authenticatable
         'profile_image',
         'phone',
         'address',
+        'role',
     ];
 
     /**
@@ -55,7 +57,14 @@ class User extends Authenticatable
     return $this->hasMany(Appointment::class);
 }
 
-  public function doctor(){
+  public function doctor()
+{
     return $this->hasOne(Doctor::class);
-  }
+}
+
+public function isAdmin()
+{
+    return $this->role === 'admin';
+}
+
 }
