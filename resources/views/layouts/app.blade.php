@@ -9,6 +9,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/layouts.css')}}">
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -37,13 +38,44 @@
 
 <footer>
 
-        <div class="container text-center">
+    <div class="container text-center position-relative">
 
-            <p>
-                © جميع الحقوق محفوظة - مستشفى الوكيل 2025
-            </p>
+        <h2 class="footer-title">
+            مستشفى الوكيل
+        </h2>
+
+        <p class="footer-desc">
+            نقدم رعاية صحية متكاملة بأفضل الأطباء والخدمات الطبية الحديثة
+            لضمان راحتكم وسلامتكم على مدار الساعة.
+        </p>
+
+        <div class="footer-social">
+
+            <a href="#">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+
+            <a href="#">
+                <i class="fab fa-instagram"></i>
+            </a>
+
+            <a href="#">
+                <i class="fab fa-twitter"></i>
+            </a>
+
+            <a href="#">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
 
         </div>
+
+        <div class="footer-bottom">
+
+            © جميع الحقوق محفوظة - مستشفى الوكيل 2025
+
+        </div>
+
+    </div>
 
 </footer>
 

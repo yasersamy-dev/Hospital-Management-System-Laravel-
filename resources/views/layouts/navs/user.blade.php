@@ -202,13 +202,12 @@
                 {{-- User Dropdown --}}
                 <div class="dropdown">
 
-                    <button class="btn btn-light border shadow-sm dropdown-toggle px-3 py-2"
-                            data-bs-toggle="dropdown">
-
+                    <button class="btn user-dropdown-btn dropdown-toggle" data-bs-toggle="dropdown">
+                    
                         <i class="bi bi-person-circle me-1"></i>
-
+                    
                         {{ Auth::user()->name }}
-
+                    
                     </button>
 
                     <ul class="dropdown-menu dropdown-menu-end">
