@@ -35,10 +35,16 @@
 </main>
 
 
-<footer class="mt-auto text-white py-3" style="background:#0d6efd;">
-    <div class="container text-center small">
-        © جميع الحقوق محفوظة مستشفى الوكيل 2025
-    </div>
+<footer>
+
+        <div class="container text-center">
+
+            <p>
+                © جميع الحقوق محفوظة - مستشفى الوكيل 2025
+            </p>
+
+        </div>
+
 </footer>
 
 

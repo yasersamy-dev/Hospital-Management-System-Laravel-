@@ -8,6 +8,7 @@ use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\Appointment\AppointmentController;
 use App\Http\Controllers\Appointment\UserAppointmentController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Notifications\NotificationController;
 
 // Auth controllers
 use App\Http\Controllers\Auth\AuthController;
@@ -65,6 +66,9 @@ Route::get('/appointments',[UserAppointmentController::class, 'show'])->name('ap
 Route::get('/appointments/{id}/edit',[UserAppointmentController::class,'edit'])->name('appointments.edit');
 Route::put('/appointments/{id}/update',[UserAppointmentController::class,'update'])->name('appointments.update');
 Route::delete('/appointments/{appointment}',[UserAppointmentController::class, 'destroy'])->name('appointments.destroy');
+
+Route::get('/notifications',[NotificationController::class,'index'])->name('notifications.index');
+Route::patch('/notifications/{id}/mark-as-read',[NotificationController::class,'markAsRead'])->name('notifications.markAsRead');
 });
 
 

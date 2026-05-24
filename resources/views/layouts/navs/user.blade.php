@@ -93,59 +93,110 @@
             @auth
 
                 {{-- Notifications --}}
-                <div class="dropdown">
+                @php
+                    $unreadNotifications = auth()->user()->unreadNotifications;
+                    $unreadCount = $unreadNotifications->count();
+                @endphp
 
-                    <button class="notification-btn"
-                            data-bs-toggle="dropdown">
-
+                <div class="dropdown notification-dropdown">
+                
+                    <button class="notification-btn position-relative"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                
                         <i class="fa-solid fa-bell"></i>
-
-                        @if(auth()->user()->unreadNotifications->count())
-
-                            <span class="notification-badge">
-
-                                {{ auth()->user()->unreadNotifications->count() }}
-
+                
+                        @if($unreadCount > 0)
+                
+                            <span class="notification-count">
+                                {{ $unreadCount > 99 ? '99+' : $unreadCount }}
                             </span>
-
+                
                         @endif
-
+                
                     </button>
-
-                    <ul class="dropdown-menu dropdown-menu-end"
-                        style="width:320px">
-
-                        @forelse(auth()->user()->unreadNotifications as $notification)
-
-                            <li class="mb-1">
-
-                                <a class="dropdown-item"
-                                   href="{{ route('appointments.show', $notification->data['doctor_id']) }}">
-
-                                    <div class="fw-semibold mb-1">
-                                        {{ $notification->data['message'] }}
+                
+                    <div class="dropdown-menu dropdown-menu-end notification-menu shadow border-0">
+                
+                        
+                        <div class="notification-header d-flex justify-content-between align-items-center">
+                
+                            <h6 class="mb-0 fw-bold">
+                                الإشعارات
+                            </h6>
+                
+                            @if($unreadCount > 0)
+                
+                                <span class="badge bg-primary rounded-pill">
+                                    {{ $unreadCount }} جديد
+                                </span>
+                
+                            @endif
+                
+                        </div>
+                
+                        {{-- Notifications --}}
+                        <div class="notification-body">
+                
+                            @forelse($unreadNotifications->take(5) as $notification)
+                
+                                <a href="{{ route('appointments.show', $notification->data['appointment_id']) }}"
+                                   class="dropdown-item notification-item">
+                
+                                    <div class="d-flex align-items-start gap-3">
+                
+                                        <div class="notification-icon">
+                
+                                            <i class="fa-solid fa-calendar-check"></i>
+                
+                                        </div>
+                
+                                        <div class="flex-grow-1">
+                
+                                            <div class="notification-text">
+                                                {{ $notification->data['message'] }}
+                                            </div>
+                
+                                            <small class="notification-time">
+                                                {{ $notification->created_at->diffForHumans() }}
+                                            </small>
+                
+                                        </div>
+                
                                     </div>
-
-                                    <small class="text-muted">
-                                        {{ $notification->created_at->diffForHumans() }}
-                                    </small>
-
+                
                                 </a>
-
-                            </li>
-
-                        @empty
-
-                            <li class="dropdown-item text-center text-muted py-3">
-
-                                لا توجد إشعارات جديدة
-
-                            </li>
-
-                        @endforelse
-
-                    </ul>
-
+                
+                            @empty
+                
+                                <div class="text-center py-5 px-3">
+                
+                                    <i class="fa-regular fa-bell-slash fs-1 text-muted mb-3"></i>
+                
+                                    <p class="text-muted mb-0">
+                                        لا توجد إشعارات جديدة
+                                    </p>
+                
+                                </div>
+                
+                            @endforelse
+                
+                        </div>
+                
+                     
+                        <div class="notification-footer">
+                
+                            <a href="{{ route('notifications.index') }}"
+                               class="view-all-btn">
+                
+                                عرض جميع الإشعارات
+                
+                            </a>
+                
+                        </div>
+                
+                    </div>
+                
                 </div>
 
                 {{-- User Dropdown --}}
