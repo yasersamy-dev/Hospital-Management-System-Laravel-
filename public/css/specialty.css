@@ -1,34 +1,230 @@
-    .section-title {
-        font-size: 24px;
-        font-weight: 700;
-        margin-bottom: 18px;
-        border-right: 4px solid #0d6efd;
-        padding-right: 10px;
+    body{
+        background: #f5f7fb;
     }
-    .hero {
-        background-size: cover;
-        background-position: center;
-        color: #fff;
-        padding: 60px 0;
+
+    .hero-section{
         position: relative;
+        min-height: 500px;
+        background-position: center;
+        background-size: cover;
         display: flex;
         align-items: center;
-      }
-      .hero h1 {
-    font-size: 42px;
-    font-weight: 800;
-      }
-      .hero p {
-    font-size: 18px;
-    opacity: .95;
+        overflow: hidden;
     }
-    /* .hero::after{
-        content: '';
+
+    .hero-overlay{
         position: absolute;
         inset: 0;
-        background: rgba(0,0,0,0.45);
-    } */
-    .hero .container{position:relative;z-index:2}
-    .doctor-card img{border-radius:12px;height:220px;object-fit:cover}
-    .stat-box{border-radius:12px;padding:18px}
-    .faq-card {cursor: pointer}
+        background: linear-gradient(
+            135deg,
+            rgba(0,0,0,0.75),
+            rgba(13,110,253,0.65)
+        );
+    }
+
+    .hero-content{
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero-badge{
+        background: rgba(255,255,255,0.15);
+        border: 1px solid rgba(255,255,255,0.15);
+        backdrop-filter: blur(8px);
+        color: white;
+        padding: 10px 18px;
+        border-radius: 30px;
+        display: inline-block;
+        margin-bottom: 20px;
+    }
+
+    .hero-title{
+        font-size: 55px;
+        font-weight: 800;
+        margin-bottom: 20px;
+    }
+
+    .hero-text{
+        font-size: 18px;
+        line-height: 1.9;
+        color: rgba(255,255,255,0.88);
+    }
+
+    .hero-buttons .btn{
+        padding: 14px 28px;
+        border-radius: 14px;
+        font-weight: 600;
+    }
+
+    .section-title{
+        font-size: 34px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        position: relative;
+    }
+
+    .section-title::after{
+        content: '';
+        width: 70px;
+        height: 4px;
+        background: #0d6efd;
+        position: absolute;
+        bottom: -10px;
+        right: 0;
+        border-radius: 20px;
+    }
+
+    .about-box{
+        background: white;
+        border-radius: 28px;
+        padding: 40px;
+        box-shadow: 0 12px 35px rgba(0,0,0,0.06);
+    }
+
+    .feature-item{
+        display: flex;
+        align-items: start;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .feature-icon{
+        width: 55px;
+        height: 55px;
+        border-radius: 16px;
+        background: rgba(13,110,253,0.1);
+        color: #0d6efd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        flex-shrink: 0;
+    }
+
+    .stat-card{
+        background: white;
+        border-radius: 24px;
+        padding: 30px;
+        text-align: center;
+        box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+        transition: 0.3s;
+        height: 100%;
+    }
+
+    .stat-card:hover{
+        transform: translateY(-7px);
+    }
+
+    .stat-number{
+        font-size: 40px;
+        font-weight: bold;
+        color: #0d6efd;
+    }
+
+    .doctor-card{
+        border: none;
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+        transition: 0.3s;
+        background: white;
+    }
+
+    .doctor-card:hover{
+        transform: translateY(-8px);
+    }
+
+    .doctor-card img{
+        height: 300px;
+        object-fit: cover;
+    }
+
+    .doctor-info{
+        padding: 25px;
+    }
+
+    .doctor-name{
+        font-size: 22px;
+        font-weight: bold;
+    }
+
+    .doctor-specialty{
+        color: #0d6efd;
+        margin-bottom: 15px;
+    }
+
+    .doctor-meta{
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 15px;
+    }
+
+    .doctor-meta span{
+        background: #f1f5ff;
+        color: #0d6efd;
+        padding: 7px 12px;
+        border-radius: 12px;
+        font-size: 13px;
+    }
+
+    .faq-wrapper .accordion-item{
+        border: none;
+        margin-bottom: 20px;
+        border-radius: 18px !important;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    }
+
+    .accordion-button{
+        padding: 22px;
+        font-weight: 600;
+        background: white;
+    }
+
+    .accordion-button:not(.collapsed){
+        background: #0d6efd;
+        color: white;
+    }
+
+    .cta-section{
+        background: linear-gradient(135deg,#0d6efd,#0b5ed7);
+        border-radius: 35px;
+        padding: 60px 40px;
+        color: white;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .cta-section::before{
+        content: '';
+        position: absolute;
+        width: 250px;
+        height: 250px;
+        background: rgba(255,255,255,0.08);
+        border-radius: 50%;
+        top: -100px;
+        left: -100px;
+    }
+
+    .cta-buttons .btn{
+        padding: 14px 28px;
+        border-radius: 14px;
+        font-weight: 600;
+    }
+
+    @media(max-width:768px){
+
+        .hero-title{
+            font-size: 38px;
+        }
+
+        .hero-text{
+            font-size: 16px;
+        }
+
+        .about-box{
+            padding: 25px;
+        }
+
+    }

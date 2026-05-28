@@ -2,60 +2,71 @@
 
 @section('title', 'الملف الشخصي')
 
+@push('style')
+    <link rel="stylesheet" href="{{ asset('css/showprofile.css')}}">
+@endpush
+
 @section('content')
 
 <div class="container py-5">
 
     @if(session('success'))
-        <div class="alert alert-success rounded-4 shadow-sm">
+        <div class="alert alert-success rounded-4 shadow-sm border-0">
             {{ session('success') }}
         </div>
     @endif
 
-    <div class="profile-card mb-5">
+    <!-- PROFILE HERO -->
+    <div class="profile-wrapper mb-5">
 
         <div class="profile-cover"></div>
 
-        <div class="card-body text-center px-4 pb-5">
+        <div class="profile-content text-center">
 
+            {{-- IMAGE --}}
             @if(Auth::user()->profile_image && file_exists(public_path(Auth::user()->profile_image)))
 
                 <img src="{{ asset(Auth::user()->profile_image) }}"
-                     class="profile-avatar shadow">
+                     class="profile-avatar">
 
             @else
 
-                <div class="bg-white rounded-circle d-inline-flex justify-content-center align-items-center shadow profile-avatar">
-                    <i class="bi bi-person-fill text-secondary"
-                       style="font-size:70px"></i>
+                <div class="default-avatar">
+                    <i class="bi bi-person-fill"></i>
                 </div>
 
             @endif
 
-            <h2 class="fw-bold mt-3">
+            {{-- USER INFO --}}
+            <h2 class="fw-bold mt-4 mb-1">
                 {{ Auth::user()->name }}
             </h2>
 
-            <p class="text-muted mb-1">
+            <p class="text-muted mb-3">
                 {{ Auth::user()->email }}
             </p>
 
-            <span class="badge bg-primary px-4 py-2 rounded-pill">
+            <span class="badge-role">
                 {{ Auth::user()->role }}
             </span>
 
-            <div class="mt-4 d-flex justify-content-center gap-3 flex-wrap">
+            {{-- ACTIONS --}}
+            <div class="profile-actions mt-4">
 
                 <a href="{{ route('profile.edit') }}"
-                   class="btn btn-warning btn-modern">
-                    <i class="bi bi-pencil-square me-1"></i>
+                   class="btn btn-warning custom-btn">
+
+                    <i class="bi bi-pencil-square"></i>
                     تعديل الحساب
+
                 </a>
 
                 <a href="{{ route('appointments.show') }}"
-                   class="btn btn-outline-primary btn-modern">
-                    <i class="bi bi-calendar-check me-1"></i>
+                   class="btn btn-outline-primary custom-btn">
+
+                    <i class="bi bi-calendar-check"></i>
                     حجوزاتي
+
                 </a>
 
             </div>
@@ -64,47 +75,73 @@
 
     </div>
 
+    <!-- INFO CARDS -->
     <div class="row g-4">
 
-        <div class="col-md-6">
+        <!-- PERSONAL INFO -->
+        <div class="col-lg-6">
 
-            <div class="card info-card h-100">
+            <div class="modern-card h-100">
 
-                <div class="card-body">
+                <div class="card-title-modern">
+                    <i class="bi bi-person-vcard"></i>
+                    المعلومات الشخصية
+                </div>
 
-                    <h5 class="fw-bold mb-4 text-primary">
-                        <i class="bi bi-person-vcard me-2"></i>
-                        المعلومات الشخصية
-                    </h5>
+                <div class="info-item">
+                    <span>رقم الهاتف</span>
 
-                    <div class="mb-3">
-                        <small class="text-muted d-block">
-                            رقم الهاتف
-                        </small>
+                    <strong>
+                        {{ Auth::user()->phone ?? 'غير متوفر' }}
+                    </strong>
+                </div>
 
-                        <strong>
-                            {{ Auth::user()->phone ?? 'غير متوفر' }}
-                        </strong>
+                <div class="info-item">
+                    <span>العنوان</span>
+
+                    <strong>
+                        {{ Auth::user()->address ?? 'غير متوفر' }}
+                    </strong>
+                </div>
+
+                <div class="info-item border-0 pb-0">
+                    <span>تاريخ إنشاء الحساب</span>
+
+                    <strong>
+                        {{ Auth::user()->created_at->format('Y-m-d') }}
+                    </strong>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- QUICK STATS -->
+        <div class="col-lg-6">
+
+            <div class="modern-card h-100">
+
+                <div class="card-title-modern">
+                    <i class="bi bi-bar-chart-line"></i>
+                    إحصائيات سريعة
+                </div>
+
+                <div class="stats-grid">
+
+                    <div class="stat-box">
+                        <h3>
+                            {{ Auth::user()->appointments->count() ?? 0 }}
+                        </h3>
+
+                        <p>الحجوزات</p>
                     </div>
 
-                    <div class="mb-3">
-                        <small class="text-muted d-block">
-                            العنوان
-                        </small>
+                    <div class="stat-box">
+                        <h3>
+                            {{ Auth::user()->created_at->diffForHumans() }}
+                        </h3>
 
-                        <strong>
-                            {{ Auth::user()->address ?? 'غير متوفر' }}
-                        </strong>
-                    </div>
-
-                    <div>
-                        <small class="text-muted d-block">
-                            تاريخ إنشاء الحساب
-                        </small>
-
-                        <strong>
-                            {{ Auth::user()->created_at->format('Y-m-d') }}
-                        </strong>
+                        <p>مدة الاستخدام</p>
                     </div>
 
                 </div>

@@ -41,25 +41,28 @@
 
                         التخصصات
                     </a>
+                
+                                   
+                <ul class="dropdown-menu specialty-dropdown text-end">
+                
+                    @foreach(\App\Models\Specialty::all() as $specialty)
+                
+                        <li>
+                
+                            <a class="dropdown-item"
+                               href="{{ route('specialties.show', $specialty->id) }}">
+                
+                                {{ $specialty->name }}
+                
+                            </a>
+                
+                        </li>
+                
+                    @endforeach
+                
+                </ul>
 
-                    <ul class="dropdown-menu text-end">
 
-                        @foreach(\App\Models\Specialty::all() as $specialty)
-
-                            <li>
-
-                                <a class="dropdown-item"
-                                   href="{{ route('specialties.show', $specialty->id) }}">
-
-                                    {{ $specialty->name }}
-
-                                </a>
-
-                            </li>
-
-                        @endforeach
-
-                    </ul>
 
                 </li>
 

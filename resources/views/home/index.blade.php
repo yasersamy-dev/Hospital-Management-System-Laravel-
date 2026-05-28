@@ -1,226 +1,497 @@
 @extends('layouts.app')
-@section('title')@endsection
+
+@section('title', 'مستشفى وكيل')
+
+@push('style')
+<link rel="stylesheet" href="{{ asset('css/index.css') }}">
+@endpush
+
 @section('content')
 
-<head>
-    <link rel="stylesheet" href="{{ asset('css/index.css')}}">
-</head>
+<!-- HERO -->
+<section class="hero-section position-relative overflow-hidden">
 
-<section class="hero-section position-relative">
-    <img src="{{ asset('specialties/trnava-university-_9xRHrMOjeg-unsplash.jpg') }}" class="w-100" style="height:100vh; object-fit:cover;">
-    
-    <!-- Overlay -->
-    <div class="overlay position-absolute top-0 start-0 w-100 h-100" 
-         style="background: rgba(0,0,0,0.5);"></div>
+    <img src="{{ asset('specialties/trnava-university-_9xRHrMOjeg-unsplash.jpg') }}"
+         class="hero-image w-100 h-100 object-fit-cover">
 
-    <div class="hero-text position-absolute top-50 start-50 translate-middle text-center text-white">
-        <div class="container text-white">
-            <h1 class="fw-bold mb-3">مستشفى وكيل</h1>
-            <p class="lead mb-4">
-                رعاية طبية متكاملة بأفضل الأطباء وأحدث الأجهزة
-            </p>
+    <div class="hero-overlay"></div>
 
-            <a href="#" id="bookNowBtn" class="btn btn-primary btn-lg px-4 me-2">
-                احجز موعدك الآن
-            </a>
+    <!-- Animated Shapes -->
+    <div class="hero-shape shape-1"></div>
+    <div class="hero-shape shape-2"></div>
 
-            <a href="#services" class="btn btn-outline-light btn-lg px-4">
-                تعرف على خدماتنا
-            </a>
+    <div class="hero-content container position-relative z-3">
+        <div class="row align-items-center min-vh-100">
+
+            <div class="col-lg-7 text-white">
+
+                <span class="hero-badge">
+                    أفضل رعاية صحية متكاملة
+                </span>
+
+                <h1 class="hero-title mt-4">
+                    مستشفى وكيل الطبية
+                </h1>
+
+                <p class="hero-description">
+                    نقدم أفضل الخدمات الطبية بأحدث الأجهزة
+                    وبأفضل الأطباء المتخصصين لضمان راحتك
+                    وصحتك على مدار الساعة.
+                </p>
+
+                <div class="hero-buttons d-flex flex-wrap gap-3 mt-4">
+
+                    <a href="#services" class="btn hero-btn-primary">
+                        احجز موعد الآن
+                    </a>
+
+                    <a href="#doctors" class="btn hero-btn-outline">
+                        تصفح الأطباء
+                    </a>
+
+                </div>
+
+            </div>
+
         </div>
     </div>
+
+    <!-- Scroll Down -->
+    <a href="#services" class="scroll-down">
+        <span></span>
+    </a>
+
 </section>
 
+<!-- SERVICES -->
+<section class="section-space" id="services">
 
-<!-- قسم الخدمات -->
-<div class="container my-5" id="services">
-    <h2 class="fw-bold mb-4 text-center">خدمات المستشفى</h2>
-    <div class="row g-4">
-        <div class="col-md-4">
-            <div class="service-box">
-                <h5 class="fw-bold mb-2">العيادات الخارجية</h5>
-                <p class="text-muted small">أفضل الاستشاريين في جميع التخصصات الطبية.</p>
-            </div>
+    <div class="container">
+
+        <div class="section-header text-center reveal">
+            <span class="section-subtitle">خدماتنا</span>
+            <h2 class="section-title">الخدمات الطبية</h2>
+            <p class="section-description">
+                نقدم مجموعة متكاملة من الخدمات الطبية بأعلى جودة
+            </p>
         </div>
 
-        <div class="col-md-4">
-            <div class="service-box">
-                <h5 class="fw-bold mb-2">الطوارئ</h5>
-                <p class="text-muted small">خدمة طوارئ على مدار 24 الساعة.</p>
-            </div>
-        </div>
+        <div class="row g-4 mt-3">
 
-        <div class="col-md-4">
-            <div class="service-box">
-                <h5 class="fw-bold mb-2">المعمل والتحاليل</h5>
-                <p class="text-muted small">نتائج دقيقة وسريعة بأحدث الأجهزة.</p>
-            </div>
-        </div>
-    </div>
-</div>
+            <div class="col-lg-4 col-md-6 reveal">
+                <div class="service-card h-100">
 
-<!-- قسم الأطباء -->
-<div class="container my-5">
-    <h2 class="fw-bold mb-4 text-center">
-        افضل أطبائتا</h2>
-        <div class="row g-3">
-@foreach($topdoctors as $doctor)
-    <div class="col-lg-4 col-md-6 col-12">
-        <div class="doctor-card text-center">
+                    <div class="service-icon">
+                        <i class="fa-solid fa-user-doctor"></i>
+                    </div>
 
-            @if($doctor->image)
-                <img src="{{ asset($doctor->image) }}"
-                     class="rounded-circle mb-3"
-                     width="120" height="120"
-                     style="object-fit:cover;">
-            @endif
+                    <h4>العيادات الخارجية</h4>
 
-            <h5 class="fw-bold">{{ $doctor->name }}</h5>
+                    <p>
+                        نخبة من أفضل الأطباء والاستشاريين
+                        في جميع التخصصات الطبية.
+                    </p>
 
-            <small class="text-muted">
-                {{ $doctor->title ?? $doctor->specialty->name }}
-            </small>
-
-        </div>
-    </div>
-@endforeach
-
-
-
-<!-- إحصائيات -->
-<div class="container my-5">
-    <div class="row text-center g-4">
-        
-        <div class="col-md-3">
-            <div class="p-4 bg-white rounded-4 shadow-sm">
-                <h3 class="fw-bold text-primary">{{ $doctorCount }}</h3>
-                <p class="text-muted">طبيب متخصص</p>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="p-4 bg-white rounded-4 shadow-sm">
-                <h3 class="fw-bold text-primary">{{ $specialtyCount }}</h3>
-                <p class="text-muted">تخصص طبي</p>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="p-4 bg-white rounded-4 shadow-sm">
-                <h3 class="fw-bold text-primary">{{ $patientCount}} </h3>
-                <p class="text-muted">مريض حتي الان</p>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="p-4 bg-white rounded-4 shadow-sm">
-                <h3 class="fw-bold text-primary">98%</h3>
-                <p class="text-muted">معدل نجاح</p>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-{{-- اراء المرضي --}}
-<div class="container my-5">
-    <h2 class="fw-bold text-center mb-4">آراء مرضانا</h2>
-    <div class="row g-4">
-
-        <div class="col-md-4">
-            <div class="p-4 bg-white rounded-4 shadow-sm">
-                <p>"خدمة ممتازة والدكاترة محترمين جدًا."</p>
-                <h6 class="fw-bold mb-0">محمد جمال</h6>
-                <small class="text-muted">⭐⭐⭐⭐⭐</small>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="p-4 bg-white rounded-4 shadow-sm">
-                <p>"سرعة في الحجز ونظام قوي."</p>
-                <h6 class="fw-bold mb-0">ميار عبد الله</h6>
-                <small class="text-muted">⭐⭐⭐⭐⭐</small>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="p-4 bg-white rounded-4 shadow-sm">
-                <p>"أفضل مستشفى اتعاملت معها على الإطلاق."</p>
-                <h6 class="fw-bold mb-0">أحمد عادل</h6>
-                <small class="text-muted">⭐⭐⭐⭐</small>
-            </div>
-        </div>
-
-    </div>
-</div>
-{{-- الاسئلة الشائعة --}}
-<div class="container my-5">
-    <h2 class="fw-bold text-center mb-4">الأسئلة الشائعة</h2>
-
-    <div class="accordion" id="faq">
-
-        <div class="accordion-item">
-            <h2 class="accordion-header">
-                <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#q1">
-                    كيف أحجز موعد؟
-                </button>
-            </h2>
-            <div id="q1" class="accordion-collapse collapse show">
-                <div class="accordion-body">
-                    يمكنك الحجز من خلال الموقع أو الاتصال بنا.
                 </div>
             </div>
-        </div>
 
-        <div class="accordion-item mt-2">
-            <h2 class="accordion-header">
-                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#q2">
-                    هل يوجد تأمين طبي؟
-                </button>
-            </h2>
-            <div id="q2" class="accordion-collapse collapse">
-                <div class="accordion-body">
-                    نعم، نقبل معظم شركات التأمين.
+            <div class="col-lg-4 col-md-6 reveal">
+                <div class="service-card h-100">
+
+                    <div class="service-icon">
+                        <i class="fa-solid fa-truck-medical"></i>
+                    </div>
+
+                    <h4>الطوارئ</h4>
+
+                    <p>
+                        خدمة طوارئ متوفرة 24 ساعة
+                        بأحدث الإمكانيات الطبية.
+                    </p>
+
                 </div>
             </div>
-        </div>
 
-    </div>
-</div>
-{{-- صور من داخل المستشفي --}}
-<div class="container my-5">
-    <h2 class="fw-bold text-center mb-4">صور من داخل المستشفى</h2>
-    <div class="row g-3">
-        <div class="col-md-4"><img src="{{ asset('specialties/solen-feyissa-Jf5WbV0uVpg-unsplash.jpg') }}" class="img-fluid rounded-3 shadow-sm"></div>
-        <div class="col-md-4"><img src="{{ asset('specialties/jonathan-borba-W9YEY6G8LVM-unsplash.jpg') }}" class="img-fluid rounded-3 shadow-sm"></div>
-        <div class="col-md-4"><img src="{{ asset('specialties/trnava-university-_9xRHrMOjeg-unsplash.jpg') }}" class="img-fluid rounded-3 shadow-sm"></div>
-    </div>
-</div>
-{{-- تواصل معنا --}}
-<div class="container my-5">
-    <h2 class="fw-bold text-center mb-4">تواصل معنا</h2>
+            <div class="col-lg-4 col-md-6 reveal">
+                <div class="service-card h-100">
 
-    <div class="row g-4">
+                    <div class="service-icon">
+                        <i class="fa-solid fa-flask-vial"></i>
+                    </div>
 
-        <div class="col-md-6">
-            <div class="bg-white p-4 rounded-4 shadow-sm">
-                <h6 class="fw-bold">العنوان</h6>
-                <p class="text-muted">المنوفية شبين الكوم</p>
+                    <h4>المعامل والتحاليل</h4>
 
-                <h6 class="fw-bold">الهاتف</h6>
-                <p class="text-muted">01000000000</p>
+                    <p>
+                        أحدث أجهزة التحاليل لضمان
+                        نتائج دقيقة وسريعة.
+                    </p>
 
-                <h6 class="fw-bold">البريد</h6>
-                <p class="text-muted">info@wakil-hospital.com</p>
+                </div>
             </div>
-        </div>
 
-        <div class="col-md-6">
-            <iframe src="https://maps.google.com/maps?q=cairo&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                    class="w-100" height="300" style="border:0; border-radius: 15px;"></iframe>
         </div>
 
     </div>
-</div>
+
+</section>
+
+<!-- TOP DOCTORS -->
+<section class="section-space doctors-section" id="doctors">
+
+    <div class="container">
+
+        <div class="section-header text-center reveal">
+            <span class="section-subtitle">الأطباء</span>
+            <h2 class="section-title">أفضل أطبائنا</h2>
+        </div>
+
+        <div class="row g-4 mt-3">
+
+            @foreach($topdoctors as $doctor)
+
+            <div class="col-lg-4 col-md-6 reveal">
+
+                <div class="doctor-card text-center h-100">
+
+                    <div class="doctor-image-wrapper">
+
+                        @if($doctor->image)
+                            <img src="{{ asset($doctor->image) }}"
+                                 class="doctor-image">
+                        @endif
+
+                    </div>
+
+                    <h5 class="doctor-name">
+                        {{ $doctor->name }}
+                    </h5>
+
+                    <p class="doctor-specialty">
+                        {{ $doctor->title ?? $doctor->specialty->name }}
+                    </p>
+
+                    <a href="#" class="doctor-btn">
+                        عرض الملف الشخصي
+                    </a>
+
+                </div>
+
+            </div>
+
+            @endforeach
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- STATS -->
+<section class="stats-section section-space">
+
+    <div class="container">
+
+        <div class="row g-4">
+
+            <div class="col-lg-3 col-md-6 reveal">
+                <div class="stats-card">
+
+                    <h3>{{ $doctorCount }}+</h3>
+                    <p>طبيب متخصص</p>
+
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 reveal">
+                <div class="stats-card">
+
+                    <h3>{{ $specialtyCount }}+</h3>
+                    <p>تخصص طبي</p>
+
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 reveal">
+                <div class="stats-card">
+
+                    <h3>{{ $patientCount }}+</h3>
+                    <p>مريض حتى الآن</p>
+
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 reveal">
+                <div class="stats-card">
+
+                    <h3>98%</h3>
+                    <p>معدل نجاح</p>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section-space">
+
+    <div class="container">
+
+        <div class="section-header text-center reveal">
+            <span class="section-subtitle">آراء العملاء</span>
+            <h2 class="section-title">ماذا يقول مرضانا</h2>
+        </div>
+
+        <div class="row g-4 mt-4">
+
+            <div class="col-lg-4 reveal">
+                <div class="testimonial-card">
+
+                    <div class="stars">★★★★★</div>
+
+                    <p>
+                        خدمة ممتازة والدكاترة محترمين جدًا
+                        والتنظيم رائع جدًا.
+                    </p>
+
+                    <h6>محمد جمال</h6>
+
+                </div>
+            </div>
+
+            <div class="col-lg-4 reveal">
+                <div class="testimonial-card">
+
+                    <div class="stars">★★★★★</div>
+
+                    <p>
+                        سرعة في الحجز ونظام احترافي
+                        واهتمام كبير بالمريض.
+                    </p>
+
+                    <h6>ميار عبد الله</h6>
+
+                </div>
+            </div>
+
+            <div class="col-lg-4 reveal">
+                <div class="testimonial-card">
+
+                    <div class="stars">★★★★☆</div>
+
+                    <p>
+                        أفضل مستشفى تعاملت معها
+                        من حيث النظافة والخدمة.
+                    </p>
+
+                    <h6>أحمد عادل</h6>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FAQ -->
+<section class="section-space faq-section">
+
+    <div class="container">
+
+        <div class="section-header text-center reveal">
+            <span class="section-subtitle">FAQ</span>
+            <h2 class="section-title">الأسئلة الشائعة</h2>
+        </div>
+
+        <div class="accordion custom-accordion reveal mt-5" id="faqAccordion">
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+
+                    <button class="accordion-button"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#faq1">
+
+                        كيف أحجز موعد؟
+
+                    </button>
+
+                </h2>
+
+                <div id="faq1"
+                     class="accordion-collapse collapse show">
+
+                    <div class="accordion-body">
+                        يمكنك الحجز بسهولة من خلال الموقع أو الاتصال بنا.
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="accordion-item mt-3">
+
+                <h2 class="accordion-header">
+
+                    <button class="accordion-button collapsed"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#faq2">
+
+                        هل يوجد تأمين طبي؟
+
+                    </button>
+
+                </h2>
+
+                <div id="faq2"
+                     class="accordion-collapse collapse">
+
+                    <div class="accordion-body">
+                        نعم، نقبل معظم شركات التأمين الطبي.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- GALLERY -->
+<section class="section-space">
+
+    <div class="container">
+
+        <div class="section-header text-center reveal">
+            <span class="section-subtitle">المعرض</span>
+            <h2 class="section-title">صور من داخل المستشفى</h2>
+        </div>
+
+        <div class="row g-4 mt-3">
+
+            <div class="col-lg-4 col-md-6 reveal">
+                <div class="gallery-card">
+                    <img src="{{ asset('specialties/solen-feyissa-Jf5WbV0uVpg-unsplash.jpg') }}"
+                         class="gallery-image">
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 reveal">
+                <div class="gallery-card">
+                    <img src="{{ asset('specialties/jonathan-borba-W9YEY6G8LVM-unsplash.jpg') }}"
+                         class="gallery-image">
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 reveal">
+                <div class="gallery-card">
+                    <img src="{{ asset('specialties/trnava-university-_9xRHrMOjeg-unsplash.jpg') }}"
+                         class="gallery-image">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CONTACT -->
+<section class="section-space contact-section">
+
+    <div class="container">
+
+        <div class="section-header text-center reveal">
+            <span class="section-subtitle">تواصل معنا</span>
+            <h2 class="section-title">نحن هنا لخدمتك</h2>
+        </div>
+
+        <div class="row g-4 mt-4">
+
+            <div class="col-lg-5 reveal">
+
+                <div class="contact-card">
+
+                    <div class="contact-item">
+                        <h6>العنوان</h6>
+                        <p>المنوفية - شبين الكوم</p>
+                    </div>
+
+                    <div class="contact-item">
+                        <h6>الهاتف</h6>
+                        <p>01000000000</p>
+                    </div>
+
+                    <div class="contact-item">
+                        <h6>البريد الإلكتروني</h6>
+                        <p>info@wakil-hospital.com</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-7 reveal">
+
+                <div class="map-wrapper">
+
+                    <iframe
+                        src="https://maps.google.com/maps?q=cairo&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                        width="100%"
+                        height="100%"
+                        style="border:0;"
+                        allowfullscreen="">
+                    </iframe>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- SCROLL ANIMATION -->
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const reveals = document.querySelectorAll('.reveal');
+
+    function revealOnScroll() {
+
+        reveals.forEach((element) => {
+
+            const windowHeight = window.innerHeight;
+            const revealTop = element.getBoundingClientRect().top;
+            const revealPoint = 100;
+
+            if(revealTop < windowHeight - revealPoint){
+                element.classList.add('active');
+            }
+
+        });
+
+    }
+
+    window.addEventListener('scroll', revealOnScroll);
+
+    revealOnScroll();
+
+});
+
+</script>
 
 @endsection
+

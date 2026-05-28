@@ -2,61 +2,223 @@
 
 @section('title', 'تعديل الملف الشخصي')
 
+@push('style')
+    <link rel="stylesheet" href="{{ asset('css/showprofile.css')}}">
+@endpush
+
 @section('content')
-<div class="container my-5">
-  <div class="card p-4 shadow-lg border-0" style="max-width: 600px; margin: auto;">
-    <h4 class="text-center mb-4">تعديل الملف الشخصي</h4>
 
-    @if(session('success'))
-      <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
+<div class="container py-5">
 
-    <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
-      @csrf
-      @method('PUT')
+    <div class="edit-profile-wrapper">
 
-      <div class="mb-3">
-        <label class="form-label fw-semibold">الاسم</label>
-        <input type="text" name="name" class="form-control" value="{{ old('name', Auth::user()->name) }}" >
-        @error('name') <div class="text-danger mt-1">{{ $message }}</div> @enderror
-      </div>
+        <!-- HEADER -->
+        <div class="edit-header">
 
-      <div class="mb-3">
-        <label class="form-label fw-semibold">البريد الإلكتروني</label>
-        <input type="email" name="email" class="form-control" value="{{ old('email', Auth::user()->email) }}" >
-        @error('email') <div class="text-danger mt-1">{{ $message }}</div> @enderror
-      </div>
-      <div class="mb-3">
-        <label class="form-label fw-semibold">الموبايل</label>
-        <input type="number" name="phone" class="form-control" value="{{ old('phone', Auth::user()->phone) }}" >
-        @error('phone') <div class="text-danger mt-1">{{ $message }}</div> @enderror
-      </div>
-      <div class="mb-3">
-        <label class="form-label fw-semibold">العنوان</label>
-        <input type="text" name="address" class="form-control" value="{{ old('address', Auth::user()->address) }}" >
-        @error('address') <div class="text-danger mt-1">{{ $message }}</div> @enderror
-      </div>
+            <div class="header-overlay"></div>
 
+            <div class="header-content">
 
+                @if(Auth::user()->profile_image && file_exists(public_path(Auth::user()->profile_image)))
 
-      <div class="mb-3">
-        <label class="form-label fw-semibold">صورة الملف الشخصي</label>
-        <input type="file" name="profile_image" class="form-control" accept="image/*">
-        @error('profile_image') <div class="text-danger mt-1">{{ $message }}</div> @enderror
+                    <img src="{{ asset(Auth::user()->profile_image) }}"
+                         class="edit-avatar">
 
-        @if(Auth::user()->profile_image && file_exists(public_path(Auth::user()->profile_image)))
-          <div class="mt-3 text-center">
-            <p class="text-muted">الصورة الحالية:</p>
-            <img src="{{ asset(Auth::user()->profile_image) }}" alt="الصورة الحالية" width="120" class="rounded shadow">
-          </div>
-        @endif
-      </div>
+                @else
 
-      <div class="text-center mt-4 d-flex justify-content-center gap-2">
-        <button type="submit" class="btn btn-success px-4 fw-semibold">حفظ البيانات</button>
-        <a href="{{ route('profile.show') }}" class="btn btn-secondary px-4 fw-semibold">العودة</a>
-      </div>
-    </form>
-  </div>
+                    <div class="default-avatar">
+                        <i class="bi bi-person-fill"></i>
+                    </div>
+
+                @endif
+
+                <h2 class="fw-bold mt-3">
+                    تعديل الملف الشخصي
+                </h2>
+
+                <p class="text-light opacity-75">
+                    يمكنك تعديل بيانات حسابك بسهولة
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- CARD -->
+        <div class="edit-card">
+
+            @if(session('success'))
+
+                <div class="alert alert-success custom-alert">
+                    {{ session('success') }}
+                </div>
+
+            @endif
+
+            <form action="{{ route('profile.update') }}"
+                  method="POST"
+                  enctype="multipart/form-data">
+
+                @csrf
+                @method('PUT')
+
+                <div class="row g-4">
+
+                    <!-- NAME -->
+                    <div class="col-md-6">
+
+                        <label class="form-label custom-label">
+                            <i class="bi bi-person"></i>
+                            الاسم
+                        </label>
+
+                        <input type="text"
+                               name="name"
+                               class="form-control modern-input"
+                               value="{{ old('name', Auth::user()->name) }}">
+
+                        @error('name')
+
+                            <div class="text-danger mt-2 small">
+                                {{ $message }}
+                            </div>
+
+                        @enderror
+
+                    </div>
+
+                    <!-- EMAIL -->
+                    <div class="col-md-6">
+
+                        <label class="form-label custom-label">
+                            <i class="bi bi-envelope"></i>
+                            البريد الإلكتروني
+                        </label>
+
+                        <input type="email"
+                               name="email"
+                               class="form-control modern-input"
+                               value="{{ old('email', Auth::user()->email) }}">
+
+                        @error('email')
+
+                            <div class="text-danger mt-2 small">
+                                {{ $message }}
+                            </div>
+
+                        @enderror
+
+                    </div>
+
+                    <!-- PHONE -->
+                    <div class="col-md-6">
+
+                        <label class="form-label custom-label">
+                            <i class="bi bi-phone"></i>
+                            رقم الهاتف
+                        </label>
+
+                        <input type="text"
+                               name="phone"
+                               class="form-control modern-input"
+                               value="{{ old('phone', Auth::user()->phone) }}">
+
+                        @error('phone')
+
+                            <div class="text-danger mt-2 small">
+                                {{ $message }}
+                            </div>
+
+                        @enderror
+
+                    </div>
+
+                    <!-- ADDRESS -->
+                    <div class="col-md-6">
+
+                        <label class="form-label custom-label">
+                            <i class="bi bi-geo-alt"></i>
+                            العنوان
+                        </label>
+
+                        <input type="text"
+                               name="address"
+                               class="form-control modern-input"
+                               value="{{ old('address', Auth::user()->address) }}">
+
+                        @error('address')
+
+                            <div class="text-danger mt-2 small">
+                                {{ $message }}
+                            </div>
+
+                        @enderror
+
+                    </div>
+
+                    <!-- IMAGE -->
+                    <div class="col-12">
+
+                        <label class="form-label custom-label">
+                            <i class="bi bi-image"></i>
+                            صورة الملف الشخصي
+                        </label>
+
+                        <input type="file"
+                               name="profile_image"
+                               class="form-control modern-input"
+                               accept="image/*">
+
+                        @error('profile_image')
+
+                            <div class="text-danger mt-2 small">
+                                {{ $message }}
+                            </div>
+
+                        @enderror
+
+                        @if(Auth::user()->profile_image && file_exists(public_path(Auth::user()->profile_image)))
+
+                            <div class="image-preview">
+
+                                <img src="{{ asset(Auth::user()->profile_image) }}"
+                                     class="preview-img">
+
+                            </div>
+
+                        @endif
+
+                    </div>
+
+                </div>
+
+                <!-- BUTTONS -->
+                <div class="action-buttons">
+
+                    <button type="submit"
+                            class="btn save-btn">
+
+                        <i class="bi bi-check-circle"></i>
+                        حفظ التعديلات
+
+                    </button>
+
+                    <a href="{{ route('profile.show') }}"
+                       class="btn cancel-btn">
+
+                        <i class="bi bi-arrow-right"></i>
+                        رجوع
+
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
 </div>
+
 @endsection
