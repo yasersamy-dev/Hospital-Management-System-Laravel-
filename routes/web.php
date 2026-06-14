@@ -24,6 +24,9 @@ use App\Http\Controllers\Admin\SpecialtiesController;
 use App\Http\Controllers\Admin\ProfilesController;
 // Doctor controllers
 use App\Http\Controllers\Doctor\DoctorDashboardController;
+use App\Http\Controllers\Doctor\DoctorProfileController;
+use App\Http\Controllers\Doctor\DoctorAppointmentController;
+use App\Http\Controllers\Doctor\NotificationController as DoctorNotificationController;
 
 
 Route::get('/',[HomeController::class,'index'])->name('home.index');
@@ -50,8 +53,13 @@ Route::resource('admin/specialties', SpecialtiesController::class);
 // doctor routes  
 Route::middleware(['auth', 'doctor'])->prefix('doctor')->group(function () {
   Route::get('/dashboard', [DoctorDashboardController::class, 'index'])->name('doctor.dashboard');
-  Route::patch('/appointments/{appointment}', [DoctorDashboardController::class, 'update'])->name('doctor.appointments.update');
-
+  Route::get('/profile', [DoctorProfileController::class, 'index'])->name('doctor.profile');
+  Route::get('/profile/edit', [DoctorProfileController::class, 'edit'])->name('doctor.profile.edit');
+  Route::put('/profile/update', [DoctorProfileController::class, 'update'])->name('doctor.profile.update');
+  Route::get('/appointments', [DoctorAppointmentController::class, 'index'])->name('doctor.appointments.index');
+  Route::patch('/appointments/{appointment}', [DoctorAppointmentController::class, 'update'])->name('doctor.appointments.update');
+  Route::get('/notifications', [DoctorNotificationController::class, 'index'])->name('doctor.notifications.index');
+  Route::patch('/notifications/{id}/mark-as-read', [DoctorNotificationController::class, 'markAsRead'])->name('doctor.notifications.markAsRead');
 });
 
 // profile routes

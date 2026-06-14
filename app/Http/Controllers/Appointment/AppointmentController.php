@@ -9,7 +9,8 @@ use Illuminate\Http\Request;
 use App\Models\Schedule;
 use App\Http\Requests\StoreAppointmentRequest;
 use App\Services\AppointmentService;
-
+use App\Notifications\DoctorAppointmentBooked;
+use App\Notifications\AppointmentBooked;
 
 class AppointmentController extends Controller
 {
@@ -34,7 +35,13 @@ class AppointmentController extends Controller
     $appointment = $this->appointmentService->storeAppointment($request->validated());
 
     auth()->user()->notify(
-        new \App\Notifications\AppointmentBooked($appointment)
+        new AppointmentBooked($appointment)
+    );
+
+    $doctorUser = $appointment->doctor->user;
+
+    $doctorUser->notify(
+        new DoctorAppointmentBooked($appointment)
     );
 
     return redirect()

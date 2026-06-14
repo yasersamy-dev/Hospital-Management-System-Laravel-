@@ -16,9 +16,7 @@
 <body class="d-flex flex-column min-vh-100">
 
   @if(auth()->check())
-    @if(auth()->user()->doctor)
-        @include('layouts.navs.doctor')
-    @else
+    @if(auth()->user())
         @include('layouts.navs.user')
     @endif
     @else

@@ -1,122 +1,7 @@
-{{-- resources/views/layouts/doctor.blade.php --}}
+@extends('layouts.doctor-dashboard')
+@section('content')
 
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
 
-<head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>@yield('title')</title>
-
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-          rel="stylesheet">
-
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-    <!-- Cairo Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800&display=swap"
-          rel="stylesheet">
-
-    <link rel="stylesheet" href="{{ asset('css/doctor-dashboard.css') }}">
-
-</head>
-
-<body>
-
-<!-- SIDEBAR -->
-
-<div class="sidebar">
-
-    <div class="sidebar-logo">
-        🩺 Wakeel Doctor
-    </div>
-
-    <div class="doctor-mini-profile">
-
-        <img src="{{ asset(auth()->user()->doctor?->image ?? 'default-doctor.jpg') }}">
-
-        <h5>
-            د /
-            {{ auth()->user()->doctor?->name }}
-        </h5>
-
-        <p>
-            <span class="online-status"></span>
-            متصل الآن
-        </p>
-
-    </div>
-
-    <div class="sidebar-menu">
-
-        <a href="{{ route('doctor.dashboard')}}" class="sidebar-link active">
-            <i class="bi bi-grid"></i>
-            الرئيسية
-        </a>
-
-        <a href="#" class="sidebar-link">
-            <i class="bi bi-calendar-check"></i>
-            الحجوزات
-        </a>
-
-        <a href="#" class="sidebar-link">
-            <i class="bi bi-people"></i>
-            المرضى
-        </a>
-
-        <a href="#" class="sidebar-link">
-            <i class="bi bi-chat-dots"></i>
-            الرسائل
-        </a>
-
-        <a href="#" class="sidebar-link">
-            <i class="bi bi-bell"></i>
-            الإشعارات
-        </a>
-
-        <a href="#" class="sidebar-link">
-            <i class="bi bi-cash-stack"></i>
-            الأرباح
-        </a>
-
-        <a href="#" class="sidebar-link">
-            <i class="bi bi-person-circle"></i>
-            الملف الشخصي
-        </a>
-
-        <a href="#" class="sidebar-link">
-            <i class="bi bi-gear"></i>
-            الإعدادات
-        </a>
-
-        <form method="POST"
-              action="{{ route('logout') }}">
-
-            @csrf
-
-            <button class="sidebar-link border-0 bg-transparent w-100 text-start">
-
-                <i class="bi bi-box-arrow-right"></i>
-                تسجيل الخروج
-
-            </button>
-
-        </form>
-
-    </div>
-
-</div>
-
-<!-- MAIN -->
-
-<div class="main-content">
 
     <!-- TOPBAR -->
 
@@ -143,18 +28,24 @@
 
             </div>
 
-            <div class="top-icon">
+            @php
+                $unreadCount = auth()->user()->unreadNotifications()->count();
+            @endphp
+            <div class="top-icon position-relative">
 
-                <i class="bi bi-bell"></i>
-
-                <span class="notification-badge">
-                    7
-                </span>
-
+                <a href="{{ route('doctor.notifications.index') }}">
+                    <i class="bi bi-bell"></i>
+                </a>
+            
+                @if($unreadCount)
+                    <span class="notification-badge">
+                        {{ $unreadCount }}
+                    </span>
+                @endif
+            
             </div>
-
             <div class="top-icon">
-                <i class="bi bi-person"></i>
+               <a href="{{ route('doctor.profile') }}"><i class="bi bi-person"></i></a> 
             </div>
 
         </div>
@@ -188,7 +79,7 @@
             </div>
 
             <h3>
-                24
+                {{ $completedAppointments }}
             </h3>
 
             <p>
@@ -204,7 +95,7 @@
             </div>
 
             <h3>
-                8
+                {{ $pendingAppointments }}
             </h3>
 
             <p>
@@ -212,19 +103,33 @@
             </p>
 
         </div>
-
         <div class="stat-card">
 
             <div class="stat-icon">
-                <i class="bi bi-cash-coin"></i>
+                <i class="bi bi-clock-history"></i>
             </div>
 
             <h3>
-                12,500 ج
+                {{ $cancelledAppointments }}
             </h3>
 
             <p>
-                إجمالي الأرباح
+                ملغية
+            </p>
+
+        </div>
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                <i class="bi bi-clock-history"></i>
+            </div>
+
+            <h3>
+                {{ $confirmedAppointments }}
+            </h3>
+
+            <p>
+                مقبولة
             </p>
 
         </div>
@@ -466,9 +371,6 @@
 
     </div>
 
-</div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-</body>
-</html>
+@endsection

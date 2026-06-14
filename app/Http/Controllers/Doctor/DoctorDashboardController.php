@@ -4,39 +4,22 @@ namespace App\Http\Controllers\Doctor;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User;
-use App\Models\Appointment;
+use App\Services\Doctor\DoctorDashboardService;
 
 class DoctorDashboardController extends Controller
 {
+   
+    public function __construct(private DoctorDashboardService $dashboardService)
+
+     {
+        
+     }
+     
     public function index(){
         $doctor = auth()->user()->doctor ?? abort(403);
-        $user = $doctor->user;
-
-        $appointments = $doctor->appointments()
-            ->with('user')
-            ->latest()
-            ->paginate(10);
-
-     return view('doctordashbord.index',compact('user', 'appointments'));
+        $data = $this->dashboardService->dashboardData($doctor);
+        
+        return view('doctor_dashboard.index',$data);
     }
-
-    public function update(Request $request, Appointment $appointment)
-{
-    
-    if ($appointment->doctor_id !== auth()->user()->doctor->id) {
-    abort(403);
-}
-
-    $request->validate([
-        'status' => 'required|in:pending,confirmed,cancelled',
-    ]);
-
-    $appointment->update([
-        'status' => $request->status
-    ]);
-
-    return back();
-}
 
 }
