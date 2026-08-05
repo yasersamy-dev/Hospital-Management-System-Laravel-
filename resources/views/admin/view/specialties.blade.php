@@ -3,15 +3,90 @@
 @section('title', 'التخصصات')
 
 @section('content_header')
-    <div class="d-flex justify-content-between align-items-center">
-        <h1>التخصصات</h1>
-        <a href="{{ route('specialties.create')}}" class="btn btn-primary">
-            <i class="fas fa-plus"></i> إضافة تخصص
-        </a>
+
+<div class="d-flex justify-content-between align-items-center">
+
+    <div>
+
+        <h2 class="fw-bold">
+
+            <i class="fas fa-stethoscope text-primary"></i>
+
+            إدارة التخصصات
+
+        </h2>
+
+        <p class="text-muted mb-0">
+
+            عرض وإدارة جميع التخصصات الطبية
+
+        </p>
+
     </div>
+
+    <a href="{{ route('specialties.create') }}"
+       class="btn btn-primary px-4">
+
+        <i class="fas fa-plus-circle me-2"></i>
+
+        إضافة تخصص
+
+    </a>
+
+</div>
+
 @stop
 
 @section('content')
+
+<div class="row mb-4">
+
+<div class="col-md-6">
+
+<div class="small-box bg-primary">
+
+<div class="inner">
+
+<h3>{{ $totalSpecialties }}</h3>
+
+<p>إجمالي التخصصات</p>
+
+</div>
+
+<div class="icon">
+
+<i class="fas fa-stethoscope"></i>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-6">
+
+<div class="small-box bg-success">
+
+<div class="inner">
+
+<h3>{{ $totalDoctors }}</h3>
+
+<p>إجمالي الأطباء</p>
+
+</div>
+
+<div class="icon">
+
+<i class="fas fa-user-md"></i>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 <div class="card">
     <div class="card-body">
         <table class="table table-bordered table-hover text-center">
@@ -60,4 +135,33 @@
        </div>
     </div>
 </div>
+
+@section('css')
+
+<style>
+
+.table tbody tr{
+
+transition:.3s;
+
+}
+
+.table tbody tr:hover{
+
+background:#f8f9fa;
+
+transform:scale(1.01);
+
+}
+
+.badge{
+
+font-size:13px;
+
+}
+
+</style>
+
+@stop
+
 @stop

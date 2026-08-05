@@ -13,18 +13,16 @@
 
 {{-- HERO --}}
 <section class="hero-section"
-    style="
-        background-image:
-        url('{{ $specialty->image ? asset($specialty->image) : 'https://via.placeholder.com/1600x700' }}');
-    ">
+style="background-image:url('{{ $specialty->image ? asset($specialty->image) : 'https://via.placeholder.com/1600x700' }}')">
 
     <div class="hero-overlay"></div>
 
     <div class="container hero-content">
 
-        <div class="row justify-content-center text-center">
+       
+        <div class="row align-items-center min-vh-75">
 
-            <div class="col-lg-8">
+            <div class="col-lg-7">
 
                 <div class="hero-badge">
                     ✨ رعاية طبية متخصصة بأحدث المعايير
@@ -38,21 +36,63 @@
                     {{ $specialty->description ?? 'رعاية طبية متكاملة وفق أعلى المعايير العالمية مع نخبة من الأطباء المتخصصين.' }}
                 </p>
 
-                <div class="hero-buttons d-flex justify-content-center gap-3 mt-4 flex-wrap">
+                <div class="hero-buttons d-flex gap-3 flex-wrap mt-4">
 
                     <a href="#doctors"
                        class="btn btn-primary btn-lg">
-
                         عرض الأطباء
-
                     </a>
 
                     <a href="#about"
                        class="btn btn-outline-light btn-lg">
-
                         عن القسم
-
                     </a>
+
+                </div>
+
+                <div class="hero-stats">
+
+                    <div class="hero-stat">
+                        <h3>{{ $specialty->doctors->count() }}</h3>
+                        <span>طبيب متخصص</span>
+                    </div>
+
+                    <div class="hero-stat">
+                        <h3>{{ $specialty->satisfaction_rate ?? '95%' }}</h3>
+                        <span>رضا المرضى</span>
+                    </div>
+
+                    <div class="hero-stat">
+                        <h3>{{ $specialty->appointments_count ?? '1500+' }}</h3>
+                        <span>مريض</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-5 d-none d-lg-block">
+
+                <div class="floating-card">
+
+                    <div class="doctor-images">
+
+                        @foreach($specialty->doctors->take(4) as $doctor)
+
+                            <img src="{{ asset($doctor->image) }}"
+                                 alt="{{ $doctor->name }}">
+
+                        @endforeach
+
+                    </div>
+
+                    <h4 class="mt-4">
+                        نخبة من الأطباء المتخصصين
+                    </h4>
+
+                    <p class="mb-0 text-light">
+                        نقدم رعاية صحية متقدمة باستخدام أحدث التقنيات الطبية الحديثة.
+                    </p>
 
                 </div>
 
@@ -61,6 +101,14 @@
         </div>
 
     </div>
+
+    {{-- <div class="hero-wave">
+        <svg viewBox="0 0 1440 320">
+            <path fill="#f5f7fb"
+                  d="M0,224L80,218.7C160,213,320,203,480,192C640,181,800,171,960,181.3C1120,192,1280,224,1360,240L1440,256V320H0Z">
+            </path>
+        </svg>
+    </div> --}}
 
 </section>
 

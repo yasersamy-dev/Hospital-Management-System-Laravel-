@@ -11,17 +11,17 @@ use Illuminate\Support\Facades\Auth;
 
 class UserAppointmentController extends Controller
 {
-     public function show(){
+    public function show(){
         $user = Auth::user();
         $appointments = Appointment::with('doctor')
         ->latest()
         ->where('user_id', $user->id)
         ->get();
-        
         return view('appointments.show', compact('appointments'));
     }
 
     public function edit($id){
+
     $appointment = Appointment::findOrFail($id);
 
     if ($appointment->user_id !== auth()->id()){

@@ -23,7 +23,7 @@
             <div class="col-lg-6">
 
                 <h2 class="fw-bold mb-2">
-                    د / {{ $doctor->name }}
+                    {{ $doctor->name }}
                 </h2>
 
                 <h5 class="text-primary mb-3">
@@ -85,9 +85,14 @@
                         احجز الآن
                     </a>
 
-                    <button class="btn btn-outline-primary btn-book w-100">
-                        ارسال رسالة
-                    </button>
+                    <a href="{{ route('chat.index', ['user' => $doctor->user_id]) }}"
+                       class="btn btn-outline-primary btn-book w-100">
+                    
+                        <i class="fa-solid fa-comment-dots me-2"></i>
+                    
+                        تواصل مع الطبيب
+                    
+                    </a>
 
                 </div>
 

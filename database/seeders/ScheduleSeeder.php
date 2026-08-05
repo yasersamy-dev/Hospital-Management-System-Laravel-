@@ -10,14 +10,14 @@ class ScheduleSeeder extends Seeder
 {
     public function run(): void
     {
-        // نحذف المواعيد القديمة
+       
         Schedule::query()->delete();
 
         $days = ['السبت','الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة'];
 
         Doctor::all()->each(function ($doctor) use ($days) {
 
-            // اختار يومين عشوائيين لكل دكتور
+           
             $randomDays = collect($days)->shuffle()->take(2);
 
             foreach ($randomDays as $day) {

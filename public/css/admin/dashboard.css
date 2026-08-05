@@ -1,0 +1,390 @@
+.hero-card{
+
+    border-radius:25px;
+
+    background:linear-gradient(135deg,#ffffff,#f8fbff);
+
+}
+
+.hero-card .card-body{
+
+    padding:45px;
+
+}
+
+.hero-card h2{
+
+    font-size:35px;
+
+}
+
+.hero-card p{
+
+    font-size:16px;
+
+    line-height:30px;
+
+}
+
+.hero-card .btn{
+
+    border-radius:12px;
+
+    padding:12px 22px;
+
+    font-weight:600;
+
+}
+
+.hero-status{
+
+    background:#f8fafc;
+
+    border-radius:20px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.05);
+
+}
+
+.hero-status .card-body{
+
+    padding:30px;
+
+}
+
+.hero-card{
+
+    transition:.4s;
+
+}
+
+.hero-card:hover{
+
+    transform:translateY(-6px);
+
+}
+.stats-card{
+
+background:#fff;
+
+border-radius:22px;
+
+padding:25px;
+
+box-shadow:0 15px 40px rgba(0,0,0,.07);
+
+transition:.35s;
+
+height:100%;
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.stats-card:hover{
+
+transform:translateY(-8px);
+
+}
+
+.stats-top{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:25px;
+
+}
+
+.stats-icon{
+
+width:65px;
+
+height:65px;
+
+border-radius:18px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:24px;
+
+color:#fff;
+
+}
+
+.users-card .stats-icon{
+
+background:#3b82f6;
+
+}
+
+.doctors-card .stats-icon{
+
+background:#10b981;
+
+}
+
+.patients-card .stats-icon{
+
+background:#f59e0b;
+
+}
+
+.appointment-card .stats-icon{
+
+background:#ef4444;
+
+}
+
+.specialty-card .stats-icon{
+
+background:#6366f1;
+
+}
+
+.rating-card .stats-icon{
+
+background:#eab308;
+
+}
+
+.complaint-card .stats-icon{
+
+background:#dc2626;
+
+}
+
+.chat-card .stats-icon{
+
+background:#14b8a6;
+
+}
+
+.stats-card h2{
+
+font-size:38px;
+
+font-weight:700;
+
+margin-bottom:10px;
+
+}
+
+.stats-card p{
+
+color:#777;
+
+margin-bottom:20px;
+
+font-size:15px;
+
+}
+
+.stats-card a{
+
+text-decoration:none;
+
+font-weight:600;
+
+}
+
+.stats-badge{
+
+background:#eef6ff;
+
+padding:6px 12px;
+
+border-radius:30px;
+
+font-size:13px;
+
+color:#2563eb;
+
+font-weight:600;
+
+}
+.chart-card{
+
+background:#fff;
+
+border-radius:22px;
+
+padding:30px;
+
+box-shadow:0 15px 40px rgba(0,0,0,.07);
+
+}
+
+.chart-header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:30px;
+
+flex-wrap:wrap;
+
+gap:15px;
+
+}
+
+.chart-header .btn{
+
+border-radius:12px;
+
+padding:8px 20px;
+
+}
+
+.chart-header .active{
+
+background:#2563eb;
+
+color:#fff;
+
+}
+
+.chart-body{
+
+height:380px;
+
+}
+
+.analytics-card{
+
+background:#fff;
+
+padding:30px;
+
+border-radius:22px;
+
+box-shadow:0 15px 40px rgba(0,0,0,.07);
+
+height:100%;
+
+}
+
+.analytics-item{
+
+display:flex;
+
+justify-content:space-between;
+
+font-size:15px;
+
+margin-bottom:10px;
+
+font-weight:600;
+
+}
+
+.progress{
+
+height:8px;
+
+border-radius:50px;
+
+margin-bottom:20px;
+
+}
+.modern-card{
+
+border:none;
+
+border-radius:22px;
+
+box-shadow:0 15px 35px rgba(0,0,0,.08);
+
+overflow:hidden;
+
+}
+
+.modern-card .card-header{
+
+padding:25px;
+
+}
+
+.modern-card table thead{
+
+background:#f8fafc;
+
+}
+
+.modern-card table th{
+
+font-weight:700;
+
+padding:18px;
+
+border:none;
+
+}
+
+.modern-card table td{
+
+padding:18px;
+
+vertical-align:middle;
+
+border-top:1px solid #f1f5f9;
+
+}
+
+.modern-card tbody tr{
+
+transition:.3s;
+
+}
+
+.modern-card tbody tr:hover{
+
+background:#f8fbff;
+
+}
+
+.avatar-circle{
+
+width:45px;
+
+height:45px;
+
+border-radius:50%;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+color:#fff;
+
+font-weight:bold;
+
+font-size:18px;
+
+}
+
+.badge{
+
+padding:8px 12px;
+
+border-radius:20px;
+
+font-size:13px;
+
+font-weight:600;
+
+}

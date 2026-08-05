@@ -9,6 +9,8 @@ use App\Http\Controllers\Appointment\AppointmentController;
 use App\Http\Controllers\Appointment\UserAppointmentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Notifications\NotificationController;
+// Chat controllers
+use App\Http\Controllers\Chat\ChatController;
 
 // Auth controllers
 use App\Http\Controllers\Auth\AuthController;
@@ -27,6 +29,7 @@ use App\Http\Controllers\Doctor\DoctorDashboardController;
 use App\Http\Controllers\Doctor\DoctorProfileController;
 use App\Http\Controllers\Doctor\DoctorAppointmentController;
 use App\Http\Controllers\Doctor\NotificationController as DoctorNotificationController;
+use App\Http\Controllers\Doctor\PatientsController as DoctorPatientController;
 
 
 Route::get('/',[HomeController::class,'index'])->name('home.index');
@@ -58,11 +61,14 @@ Route::middleware(['auth', 'doctor'])->prefix('doctor')->group(function () {
   Route::put('/profile/update', [DoctorProfileController::class, 'update'])->name('doctor.profile.update');
   Route::get('/appointments', [DoctorAppointmentController::class, 'index'])->name('doctor.appointments.index');
   Route::patch('/appointments/{appointment}', [DoctorAppointmentController::class, 'update'])->name('doctor.appointments.update');
+
+  Route::get('/patients', [DoctorPatientController::class, 'index'])->name('doctor.patients.index');
+  Route::get('/patients/{id}', [DoctorPatientController::class, 'show'])->name('doctor.patients.show');
   Route::get('/notifications', [DoctorNotificationController::class, 'index'])->name('doctor.notifications.index');
   Route::patch('/notifications/{id}/mark-as-read', [DoctorNotificationController::class, 'markAsRead'])->name('doctor.notifications.markAsRead');
 });
 
-// profile routes
+// profile 
 Route::middleware('auth')->group(function () {
 Route::get('/profile/show',[ProfileController::class,'show'])->name('profile.show');
 Route::get('/profile/edit',[ProfileController::class,'edit'])->name('profile.edit');
@@ -75,6 +81,12 @@ Route::get('/appointments/{id}/edit',[UserAppointmentController::class,'edit'])-
 Route::put('/appointments/{id}/update',[UserAppointmentController::class,'update'])->name('appointments.update');
 Route::delete('/appointments/{appointment}',[UserAppointmentController::class, 'destroy'])->name('appointments.destroy');
 
+//chat routes
+Route::get('/chat',[ChatController::class,'index'])->name('chat.index');
+// Route::get('/chat/{user}',[ChatController::class,'show'])->name('chat.show');
+Route::post('/chat/{user}/send',[ChatController::class,'sendMessage'])->name('chat.send');
+
+// notifications routes
 Route::get('/notifications',[NotificationController::class,'index'])->name('notifications.index');
 Route::patch('/notifications/{id}/mark-as-read',[NotificationController::class,'markAsRead'])->name('notifications.markAsRead');
 });
@@ -98,6 +110,3 @@ Route::post('reset-password', [ResetPasswordController::class,'resetpassword'])-
 
 Route::get('/auth/redirect/{provider}', [SocialController::class,'redirect'])->name('social.redirect');
 Route::get('/auth/callback/{provider}', [SocialController::class,'callback'])->name('social.callback');
-
-
-

@@ -18,7 +18,11 @@ class PatientsController extends Controller
             ->latest()
             ->paginate(10);
 
-        return view('admin.view.patients', compact('patients'));
+        $totalPatients = User::where('role', 'user')->count();
+
+        $totalAppointments = Appointment::count();    
+
+        return view('admin.view.patients', compact('patients', 'totalPatients', 'totalAppointments'));
     }
 
 

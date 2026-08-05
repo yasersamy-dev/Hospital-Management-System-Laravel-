@@ -5,13 +5,17 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Specialty;
+use App\Models\Doctor;
 
 class SpecialtiesController extends Controller
 {
     public function index(){
         $specialties = Specialty::latest()->paginate(10);
+        $totalSpecialties = Specialty::count();
 
-        return view('admin.view.specialties', compact('specialties'));
+       $totalDoctors = Doctor::count();
+
+        return view('admin.view.specialties', compact('specialties', 'totalSpecialties', 'totalDoctors'));
     }
     //create specialty
     public function create(){

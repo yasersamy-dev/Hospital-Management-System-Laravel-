@@ -5,7 +5,7 @@
         {{-- Logo --}}
         <a class="navbar-brand" href="{{ route('home.index') }}">
             <i class="fa-solid fa-hospital me-2"></i>
-            مستشفى الوكيل
+             مستشفى الطبية
         </a>
 
         {{-- Mobile Toggle --}}
@@ -14,7 +14,7 @@
                 data-bs-toggle="collapse"
                 data-bs-target="#mainNav">
 
-            <span class="navbar-toggler-icon"></span>
+            <i class="fas fa-bars"></i>
 
         </button>
 
@@ -28,6 +28,18 @@
                     <a class="nav-link"
                        href="{{ route('home.index') }}">
                         الرئيسية
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        الأطباء
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link book-btn" href="#">
+                        احجز الآن
                     </a>
                 </li>
 
@@ -77,23 +89,22 @@
 
         </div>
 
-        {{-- Right Side --}}
-        <div class="d-flex align-items-center gap-2">
-
-            {{-- Guest --}}
-            @guest
-
-                <a href="{{ route('auth.showloginform') }}"
-                   class="btn btn-primary px-4 py-2">
-
-                    تسجيل الدخول
-
-                </a>
-
-            @endguest
+        
 
             {{-- Auth --}}
             @auth
+            <div class="navbar-actions d-flex align-items-center gap-3">
+
+            <a href="{{ route('chat.index') }}" class="icon-btn">
+                <i class="fa-solid fa-comments"></i>
+                الدردشة
+            
+                @if(auth()->user()->unreadMessagesCount ?? false)
+                    <span class="icon-badge">
+                        {{ auth()->user()->unreadMessagesCount }}
+                    </span>
+                @endif
+            </a>
 
                 {{-- Notifications --}}
                 @php
@@ -207,13 +218,34 @@
 
                     <button class="btn user-dropdown-btn dropdown-toggle" data-bs-toggle="dropdown">
                     
-                        <i class="bi bi-person-circle me-1"></i>
-                    
-                        {{ Auth::user()->name }}
+                        <img
+                            src="{{ Auth::user()->image ? asset('storage/'.Auth::user()->image) : asset('images/avatar.png') }}"
+                            class="user-avatar"
+                            alt="">
+                        
+                        <span class="ms-2">
+                            {{ Auth::user()->name }}
+                        </span>
                     
                     </button>
 
                     <ul class="dropdown-menu dropdown-menu-end">
+                        <li class="text-center py-3">
+                               <img
+                                    src="{{ Auth::user()->profile_image ? asset('storage/'.Auth::user()->image) : asset('images/avatar.png') }}"
+                                       class="dropdown-avatar">
+                               
+                                   <h6 class="mt-2 mb-0">
+                                       {{ Auth::user()->name }}
+                                   </h6>
+                               
+                                   <small class="text-muted">
+                                       {{ Auth::user()->email }}
+                                   </small>
+                               
+                               </li>
+                               
+                               <li><hr class="dropdown-divider"></li>
 
                         <li>
                             <a class="dropdown-item"
@@ -261,10 +293,11 @@
                     </ul>
 
                 </div>
+            </div>
 
             @endauth
 
-        </div>
+        
 
     </div>
 

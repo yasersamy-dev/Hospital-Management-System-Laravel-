@@ -12,11 +12,15 @@ use App\Http\Requests\Admin\UpdateUserRequest;
 class UsersController extends Controller
 {
    public function index(){
-    $users= User::latest()->get();
-    return view('admin.view.users' , compact('users'));
+    $users= User::latest()->paginate(10);
+    $totalUsers = User::count();
+    $totalAdmins = User::where('role','admin')->count();
+    $totalDoctors = User::where('role','doctor')->count();
+    $totalPatients = User::where('role','user')->count();
+    return view('admin.view.users' , compact('users', 'totalUsers', 'totalAdmins', 'totalDoctors', 'totalPatients'));
    } 
    
-      public function create(){
+    public function create(){
 
         return view('admin.create.createuser');
     }

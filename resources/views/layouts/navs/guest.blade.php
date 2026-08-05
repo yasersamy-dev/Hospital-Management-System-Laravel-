@@ -2,7 +2,7 @@
   <div class="container">
 
     <a class="navbar-brand fw-bold fs-4 text-primary" href="{{ route('home.index')}}">
-      مستشفى الوكيل
+      مستشفى الطبية
     </a>
 
     <button class="navbar-toggler" type="button"

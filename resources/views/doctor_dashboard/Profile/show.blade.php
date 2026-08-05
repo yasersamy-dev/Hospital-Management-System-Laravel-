@@ -150,25 +150,7 @@
 
         </div>
 
-        <div class="stat-card">
-
-            <div class="stat-icon red">
-                <i class="bi bi-cash-stack"></i>
-            </div>
-
-            <div>
-
-                <h3>
-                    25K
-                </h3>
-
-                <p>
-                    الأرباح
-                </p>
-
-            </div>
-
-        </div>
+        
 
     </div>
 
@@ -300,7 +282,7 @@
 
                     </a>
 
-                    <a href="#"
+                    <a href="{{ route('chat.index')}}"
                        class="quick-btn">
 
                         <i class="bi bi-chat-dots"></i>

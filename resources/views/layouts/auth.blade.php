@@ -43,7 +43,7 @@
 
                 <i class="fa-solid fa-hospital me-2"></i>
 
-                مستشفى الوكيل
+                مستشفى الطبية
 
             </a>
 

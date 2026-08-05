@@ -1,12 +1,12 @@
 @extends('layouts.doctor-dashboard')
 @section('content')
-
-
-
-    <!-- TOPBAR -->
+  <!-- TOPBAR -->
 
     <div class="topbar">
 
+        <button class="menu-toggle d-lg-none" id="menuToggle">
+            <i class="bi bi-list"></i>
+        </button>
         <div class="search-box">
 
             <input type="text"
@@ -19,12 +19,14 @@
         <div class="topbar-actions">
 
             <div class="top-icon">
+                <a href="{{ route('chat.index') }}">
+                    <i class="bi bi-chat-dots"></i>
+                </a>
+                {{-- <i class="bi bi-chat-dots"></i> --}}
 
-                <i class="bi bi-chat-dots"></i>
-
-                <span class="notification-badge">
-                    4
-                </span>
+                {{-- <span class="notification-badge">
+                    
+                </span> --}}
 
             </div>
 
@@ -150,7 +152,7 @@
                     آخر الحجوزات
                 </h4>
 
-                <a href="#"
+                <a href="{{ route('doctor.appointments.index')}}"
                    class="btn btn-primary rounded-pill px-4">
 
                     عرض الكل
@@ -269,16 +271,11 @@
                                         <ul class="dropdown-menu">
 
                                             <li>
-                                                <a class="dropdown-item" href="#">
+                                                <a class="dropdown-item" href="{{ route('chat.index')}}">
                                                     فتح المحادثة
                                                 </a>
                                             </li>
 
-                                            <li>
-                                                <a class="dropdown-item" href="#">
-                                                    عرض التفاصيل
-                                                </a>
-                                            </li>
 
                                         </ul>
 

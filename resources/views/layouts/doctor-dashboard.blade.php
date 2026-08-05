@@ -10,6 +10,8 @@
 
     <title>@yield('title')</title>
 
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
           rel="stylesheet">
@@ -65,12 +67,12 @@
             الحجوزات
         </a>
 
-        <a href="#" class="sidebar-link">
+        <a href="{{ route('doctor.patients.index')}}" class="sidebar-link">
             <i class="bi bi-people"></i>
             المرضى
         </a>
 
-        <a href="#" class="sidebar-link">
+        <a href="{{route('chat.index')}}" class="sidebar-link">
             <i class="bi bi-chat-dots"></i>
             الرسائل
         </a>
@@ -133,6 +135,17 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
 
+const menu=document.getElementById("menuToggle");
+const sidebar=document.querySelector(".sidebar");
+
+menu.addEventListener("click",()=>{
+
+sidebar.classList.toggle("show");
+
+});
+
+</script>
 </body>
 </html>

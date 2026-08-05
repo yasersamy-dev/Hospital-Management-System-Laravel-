@@ -1,31 +1,28 @@
 
-        *{
-            font-family:'Cairo',sans-serif;
-        }
+*{
+    font-family:'Cairo',sans-serif;
+}
 
-        body{
-            background:#f4f7fb;
-            overflow-x:hidden;
-        }
-
-        a{
-            text-decoration:none;
-        }
-
-        /* SIDEBAR */
-
-        .sidebar{
-            width:270px;
-            height:100vh;
-            position:fixed;
-            top:0;
-            right:0;
-            background:#ffffff;
-            border-left:1px solid #edf0f5;
-            padding:25px 20px;
-            z-index:1000;
-            overflow-y:auto;
-        }
+    body{
+        background:#f4f7fb;
+        overflow-x:hidden;
+    }
+    a{
+        text-decoration:none;
+    }
+    /* SIDEBAR */
+    .sidebar{
+        width:270px;
+        height:100vh;
+        position:fixed;
+        top:0;
+        right:0;
+        background:#ffffff;
+        border-left:1px solid #edf0f5;
+        padding:25px 20px;
+        z-index:1000;
+        overflow-y:auto;
+    }
 
         .sidebar-logo{
             font-size:24px;
@@ -103,8 +100,10 @@
         /* MAIN */
 
         .main-content{
+        
             margin-right:270px;
             padding:30px;
+            transition:.3s;
         }
 
         /* TOPBAR */
@@ -244,10 +243,22 @@
         /* CONTENT GRID */
 
         .content-grid{
-            display:grid;
-            grid-template-columns:1fr 350px;
-            gap:25px;
+
+        display:grid;
+        grid-template-columns:2fr 1fr;
+        gap:25px;
+        
         }
+
+        @media(max-width:992px){
+
+        .content-grid{
+        
+        grid-template-columns:1fr;
+        
+        }
+
+}
 
         /* TABLE CARD */
 
@@ -367,24 +378,139 @@
             border-bottom:1px solid #f1f1f1;
         }
 
-        /* MOBILE */
+@media(max-width:991px){
 
-        @media(max-width:991px){
+.sidebar{
 
-            .sidebar{
-                display:none;
-            }
+    transform:translateX(100%);
+}
 
-            .main-content{
-                margin-right:0;
-            }
+.sidebar.show{
 
-            .content-grid{
-                grid-template-columns:1fr;
-            }
+    transform:translateX(0);
+}
 
-            .search-box{
-                display:none;
-            }
+}
+@media(max-width:991px){
 
-        }
+.main-content{
+
+    margin-right:0;
+    padding:15px;
+}
+
+}
+.topbar{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:20px;
+flex-wrap:wrap;
+
+}
+@media(max-width:768px){
+
+.topbar{
+
+flex-direction:column;
+align-items:stretch;
+
+}
+
+.search-box{
+
+width:100%;
+
+}
+
+.topbar-actions{
+
+justify-content:space-between;
+
+}
+
+}
+.stats-grid{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+
+}
+@media(max-width:576px){
+
+.stats-grid{
+
+grid-template-columns:1fr;
+
+}
+
+}
+.table{
+
+min-width:700px;
+
+}
+.doctor-profile-card{
+
+text-align:center;
+
+}
+
+.doctor-profile-card img{
+
+width:120px;
+height:120px;
+border-radius:50%;
+object-fit:cover;
+
+}
+@media(max-width:768px){
+
+.doctor-profile-card{
+
+margin-top:20px;
+
+}
+
+}
+img{
+
+max-width:100%;
+height:auto;
+
+}
+@media(max-width:576px){
+
+h1{
+
+font-size:24px;
+
+}
+
+h2{
+
+font-size:22px;
+
+}
+
+h3{
+
+font-size:20px;
+
+}
+
+h4{
+
+font-size:18px;
+
+}
+
+}
+.sidebar-link{
+
+padding:14px 18px;
+font-size:16px;
+
+}

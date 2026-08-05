@@ -13,8 +13,10 @@ class DoctorsController extends Controller
 {
     public function index(){
         $doctors = Doctor::with('specialty')->latest()->paginate(10);
+        $totalDoctors = Doctor::count();
+        $totalSpecialties = Specialty::count();
 
-        return view('admin.view.doctors', compact('doctors'));
+        return view('admin.view.doctors', compact('doctors', 'totalDoctors', 'totalSpecialties'));
         
     }
        public function create(){
